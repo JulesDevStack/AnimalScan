@@ -55,11 +55,11 @@ struct infos: View {
                         Button {
                             
                         } label: {
-                            ZStack{
+                            ZStack {
                                 RoundedRectangle(cornerRadius: 32)
                                     .foregroundStyle(.backgroundCard)
                                     .shadow(radius: 3, x: 0, y: 4)
-                                HStack{
+                                HStack {
                                     Text("SPAs - 0699887766")
                                         .foregroundStyle(.foreground1)
                                         .font(.system(size: 24, weight: .semibold))
@@ -76,7 +76,7 @@ struct infos: View {
                     .font(.system(size: 24, weight: .semibold))
                     .frame(maxWidth: .infinity, alignment: .leading)
                     ScrollView {
-                    VStack(spacing:20) {
+                        VStack(spacing:20) {
                             ZStack {
                                 RoundedRectangle(cornerRadius: 32)
                                     .foregroundStyle(.backgroundCard)
@@ -84,7 +84,7 @@ struct infos: View {
                                     .shadow(radius: 3, x: 0, y: 4)
                                 HStack {
                                     Spacer()
-                                    VStack {
+                                    VStack(alignment: .leading) {
                                         Text("Ligue protectrice des oiseaux")
                                         Text("lpo.fr")
                                     }
@@ -100,7 +100,7 @@ struct infos: View {
                                     .shadow(radius: 3, x: 0, y: 4)
                                 HStack {
                                     Spacer()
-                                    VStack {
+                                    VStack(alignment: .leading) {
                                         Text("Ligue protectrice des oiseaux")
                                         Text("lpo.fr")
                                     }
@@ -116,7 +116,7 @@ struct infos: View {
                                     .shadow(radius: 3, x: 0, y: 4)
                                 HStack {
                                     Spacer()
-                                    VStack {
+                                    VStack(alignment: .leading) {
                                         Text("Ligue protectrice des oiseaux")
                                         Text("lpo.fr")
                                     }
