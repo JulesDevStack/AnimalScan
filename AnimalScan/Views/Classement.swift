@@ -12,13 +12,13 @@ struct Classement: View {
     
     var body: some View {
         ZStack {
-            LinearGradient(gradient: Gradient(colors: [Color.background1, Color.background2]), startPoint: .topLeading, endPoint: .bottom)
+            LinearGradient(gradient: Gradient(colors: [Color.background1, Color.background2, Color.background3]), startPoint: .topLeading, endPoint: .bottom)
                 .ignoresSafeArea()
             
             VStack(alignment: .leading, spacing: 12) {
                 Text("Classements")
                     .font(.system(size: 22, weight: .bold))
-                    .padding(.bottom, 24)
+                    .padding(.bottom, 20)
                     .frame(maxWidth: .infinity)
                 
                 HStack {
