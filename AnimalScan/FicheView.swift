@@ -25,28 +25,25 @@ struct FicheView: View {
                                 .scaledToFit()
                                 .cornerRadius(16)
                                 .padding(20)
-                            
                             HStack {
                                 Text("Dragon Bleu")
                                     .font(.title2)
                                     .padding(.horizontal,20)
                                     .padding(.vertical,10)
-                                
                                 Spacer()
-                                
                             }
-                            ScrollView{
-                                
+                            ScrollView {
+                                Text("Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus. Suspendisse lectus tortor, dignissim sit amet, adipiscing nec, ultricies sed, dolor. Cras elementum ultrices diam. Maecenas ligula massa, varius a, semper congue, euismod non, mi. Proin porttitor, orci Suspendisse lectus tortor, dignissim sit amet, adipiscing nec, ultricies sed, dolor. Cras elementum ultrices diam. Maecenas ligula massa, varius a, semper congue, euismod non, mi. Proin porttitor, orci Suspendisse lectus tortor, dignissim sit amet, adipiscing nec, ultricies sed, dolor. Cras elementum ultrices diam. Maecenas ligula massa, varius a, semper congue, euismod non, mi. Proin porttitor, orci")
+                                .multilineTextAlignment(.leading)
+                                .padding()
+                                .frame(maxWidth: .infinity, alignment: .leading)
                             }
-                            HStack{
-                                Text("Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus. Suspendisse lectus tortor, dignissim sit amet, adipiscing nec, ultricies sed, dolor. Cras elementum ultrices diam. Maecenas ligula massa, varius a, semper congue, euismod non, mi. Proin porttitor, orci ")
-                                    .multilineTextAlignment(.leading)
-                                    .padding(.horizontal, 20)
-                                    .padding(.vertical, 10)
-                                
-                            }
-                            
-                            
+                            .frame(maxHeight: 200)
+                            .background(
+                                RoundedRectangle(cornerRadius: 12)
+                                    .stroke(.gray, lineWidth: 1)
+                            )
+                            .padding(.horizontal, 20)
                             
                         }
                         
@@ -58,14 +55,9 @@ struct FicheView: View {
                         .padding()
                         .shadow(radius: 10)
                     }
-                    
-                    
                     ZStack{
-                        
                     }
                     Spacer()
-                    
-                    
                     ZStack{
                         VStack {
                             HStack {
@@ -88,7 +80,7 @@ struct FicheView: View {
                                             Text("SPA - 3717")
                                                 .foregroundStyle(.foreground1)
                                                 .font(.system(size: 24, weight: .semibold))
-                                                .padding(.horizontal ,10)
+                                                .padding(.horizontal)
                                             Spacer()
                                         }
                                     }
@@ -134,9 +126,8 @@ struct FicheView: View {
                                 }
                             }
                             .padding(10)
-                            
                         }
-                        
+
                         .background(
                             RoundedRectangle(cornerRadius: 16)
                                 .fill(.ultraThinMaterial)
@@ -145,17 +136,13 @@ struct FicheView: View {
                         .padding()
                         .shadow(radius: 10)
                     }
-                    
-                    
                     ZStack{
                         
                     }
                     Spacer()
-                    
                 }
             }
         }
-        
     }
 }
 
