@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct BlogHubView: View {
-    @State private var activeEvent = true
+    @State private var activeEvent = false
     @State private var activeActivity = false
     @State private var activeArticle = false
     
@@ -18,8 +18,7 @@ struct BlogHubView: View {
                 .ignoresSafeArea()
             VStack {
                 Text("Blog")
-                    .font(.system(size: 26, weight: .bold))
-                    .fontWeight(.semibold)
+                    .font(.system(size: 22, weight: .bold))
                     .frame(maxWidth: .infinity)
                 
                 ScrollView(.vertical, showsIndicators: false) {
@@ -46,6 +45,8 @@ struct BlogHubView: View {
                                 HStack {
                                     Image(systemName: "megaphone")
                                     Text("Evénements")
+                                    Spacer()
+                                    Image(systemName: activeEvent ? "chevron.up" : "chevron.down").padding(.trailing, 8)
                                 }
                                 .font(.system(size: 22, weight: .medium))
                                 .foregroundStyle(.black)
@@ -69,6 +70,8 @@ struct BlogHubView: View {
                                 HStack {
                                     Image(systemName: "megaphone")
                                     Text("Activités")
+                                    Spacer()
+                                    Image(systemName: activeActivity ? "chevron.up" : "chevron.down").padding(.trailing, 8)
                                 }
                                 .font(.system(size: 22, weight: .medium))
                                 .foregroundStyle(.black)
@@ -92,6 +95,8 @@ struct BlogHubView: View {
                                 HStack {
                                     Image(systemName: "megaphone")
                                     Text("Articles")
+                                    Spacer()
+                                    Image(systemName: activeArticle ? "chevron.up" : "chevron.down").padding(.trailing, 8)
                                 }
                                 .font(.system(size: 22, weight: .medium))
                                 .foregroundStyle(.black)
@@ -109,7 +114,7 @@ struct BlogHubView: View {
                             })
                         }
                     }
-                    .padding(.horizontal)
+                    .padding(.leading)
                 }
             }
         }
@@ -152,57 +157,55 @@ struct EventCard: View {
             
         } label: {
             VStack(spacing: 16) {
-                ScrollView(.vertical, showsIndicators: false) {
-                    VStack(spacing: 14) {
-                        HStack {
-                            Text(label)
-                                .font(.system(size: 16))
-                                .foregroundStyle(.black)
-                            Spacer()
-                            Image(systemName: icon)
-                                .font(.system(size: 16))
-                                .foregroundStyle(.black)
-                        }
-                        .frame(maxWidth: .infinity, alignment: .leading)
+                VStack(spacing: 14) {
+                    HStack {
+                        Text(label)
+                            .font(.system(size: 16))
+                            .foregroundStyle(.black)
+                        Spacer()
+                        Image(systemName: icon)
+                            .font(.system(size: 16))
+                            .foregroundStyle(.black)
+                    }
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                    
+                    Text(content)
+                        .multilineTextAlignment(.leading)
+                        .frame(maxWidth: .infinity, maxHeight: active ? .infinity : 90, alignment: .leading, )
+                        .foregroundStyle(.black.opacity(0.7))
+                    
+                    if active {
+                        Image("canard")
+                            .resizable()
+                            .scaledToFill()
+                            .frame(maxWidth: .infinity, maxHeight: 150)
+                            .clipShape(RoundedRectangle(cornerRadius: 14))
+                            .background(
+                                RoundedRectangle(cornerRadius: 14)
+                                    .shadow(color: .black.opacity(0.5), radius: 3, x: 3, y: 4)
+                            )
                         
-                        Text(content)
-                            .multilineTextAlignment(.leading)
-                            .frame(maxWidth: .infinity, maxHeight: active ? .infinity : 90, alignment: .leading, )
-                            .foregroundStyle(.black.opacity(0.7))
-                        
-                        if active {
-                            Image("canard")
-                                .resizable()
-                                .scaledToFill()
-                                .frame(maxWidth: .infinity, maxHeight: 150)
-                                .clipShape(RoundedRectangle(cornerRadius: 14))
-                                .background(
-                                    RoundedRectangle(cornerRadius: 14)
-                                        .shadow(color: .black.opacity(0.5), radius: 3, x: 3, y: 4)
-                                )
+                        Button {
                             
-                            Button {
-                                
-                            } label: {
-                                Text(ctaLabel)
-                                    .foregroundStyle(.black)
-                                    .font(.system(size: 14, weight: .regular))
-                                    .frame(maxWidth: .infinity, alignment: .center)
-                                    .padding(.vertical, 11)
-                                    .background(content: {
-                                        RoundedRectangle(cornerRadius: 14)
-                                            .fill(.white.opacity(0.95))
-                                            .shadow(color: .black.opacity(0.5), radius: 3, x: 3, y: 4)
-                                    })
-                                    .overlay {
-                                        RoundedRectangle(cornerRadius: 14)
-                                            .stroke(Color.accent.opacity(0.75), lineWidth: 2)
-                                    }
-                            }
+                        } label: {
+                            Text(ctaLabel)
+                                .foregroundStyle(.black)
+                                .font(.system(size: 14, weight: .regular))
+                                .frame(maxWidth: .infinity, alignment: .center)
+                                .padding(.vertical, 11)
+                                .background(content: {
+                                    RoundedRectangle(cornerRadius: 14)
+                                        .fill(.white.opacity(0.95))
+                                        .shadow(color: .black.opacity(0.5), radius: 3, x: 3, y: 4)
+                                })
+                                .overlay {
+                                    RoundedRectangle(cornerRadius: 14)
+                                        .stroke(Color.accent.opacity(0.75), lineWidth: 2)
+                                }
                         }
                     }
-                    .padding()
                 }
+                .padding()
             }
             .frame(height: active ? .infinity : 150, alignment: .leading)
             .animation(.easeInOut, value: active)

@@ -18,7 +18,6 @@ struct infos: View {
                 VStack(alignment: .leading, spacing: 12) {
                     Text("Informations générales")
                         .font(.system(size: 22, weight: .bold))
-                        .fontWeight(.semibold)
                         .padding(.bottom, 24)
                         .frame(maxWidth: .infinity)
                     
