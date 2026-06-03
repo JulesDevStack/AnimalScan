@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct FicheView: View {
+    @State private var textContainer: Bool = false
+    @State private var isScrolled: Bool = false
     var body: some View {
         ZStack {
             LinearGradient(gradient: Gradient(colors: [Color.background1, Color.background2, Color.background3]), startPoint: .topLeading, endPoint: .bottom)
@@ -32,18 +34,26 @@ struct FicheView: View {
                                     .padding(.vertical,10)
                                 Spacer()
                             }
-                            ScrollView {
+                            VStack {
                                 Text("Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus. Suspendisse lectus tortor, dignissim sit amet, adipiscing nec, ultricies sed, dolor. Cras elementum ultrices diam. Maecenas ligula massa, varius a, semper congue, euismod non, mi. Proin porttitor, orci Suspendisse lectus tortor, dignissim sit amet, adipiscing nec, ultricies sed, dolor. Cras elementum ultrices diam. Maecenas ligula massa, varius a, semper congue, euismod non, mi. Proin porttitor, orci Suspendisse lectus tortor, dignissim sit amet, adipiscing nec, ultricies sed, dolor. Cras elementum ultrices diam. Maecenas ligula massa, varius a, semper congue, euismod non, mi. Proin porttitor, orci")
-                                .multilineTextAlignment(.leading)
-                                .padding()
-                                .frame(maxWidth: .infinity, alignment: .leading)
+                                    .multilineTextAlignment(.leading)
+                                    .padding(.horizontal)
+                                    .frame(maxWidth: .infinity,maxHeight: isScrolled ? .infinity : 200, alignment: .leading)
+                                Button {
+                                    if isScrolled {
+                                        isScrolled = false
+                                    } else {
+                                        isScrolled = true
+                                    }
+                                } label: {
+                                    Image(systemName: isScrolled ? "chevron.up.circle.fill" : "chevron.down.circle.fill")
+                                        .foregroundStyle(.black)
+                                        .font(.title)
+                                }
+                                .padding(.bottom, 10)
                             }
-                            .frame(maxHeight: 200)
-                            .background(
-                                RoundedRectangle(cornerRadius: 12)
-                                    .stroke(.gray, lineWidth: 1)
-                            )
-                            .padding(.horizontal, 20)
+                            
+                            .padding(.horizontal, 5)
                             
                         }
                         
@@ -53,7 +63,7 @@ struct FicheView: View {
                         )
                         .cornerRadius(16)
                         .padding()
-                        .shadow(radius: 10)
+                        .shadow(radius: 5)
                     }
                     ZStack{
                     }
@@ -127,7 +137,7 @@ struct FicheView: View {
                             }
                             .padding(10)
                         }
-
+                        
                         .background(
                             RoundedRectangle(cornerRadius: 16)
                                 .fill(.ultraThinMaterial)
