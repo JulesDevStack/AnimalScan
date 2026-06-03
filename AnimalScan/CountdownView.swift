@@ -20,21 +20,26 @@ struct CountdownView: View {
                 .fill(LinearGradient(gradient: Gradient(colors: [Color.backgroundCard,Color.accent]), startPoint: .bottomLeading, endPoint: .topLeading))
                 .frame(width: 300)
             
-            Text(
-                timerInterval: Date.now...Date(timeInterval: 3, since: .now),
-                pauseTime: nil,
-                countsDown: true,
-                showsHours: false
-                    )
-            .font(.largeTitle)
-            .fontWeight(.heavy)
-            .foregroundStyle(.accent)
-            .kerning(3)
+           
+                    }
+                
+                
+                }
+//            Text(
+//                timerInterval: Date.now...Date(timeInterval: 3, since: .now),
+//                pauseTime: nil,
+//                countsDown: true,
+//                showsHours: false
+//                    )
+//            .font(.largeTitle)
+//            .fontWeight(.heavy)
+//            .foregroundStyle(.accent)
+//            .kerning(3)
             
             
         }
-    }
-}
+    
+
 
 #Preview {
     CountdownView()

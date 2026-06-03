@@ -17,10 +17,10 @@ struct InQuizzView: View {
                 ZStack{
                     Image("jaguar1")
                         .resizable()
-                        .aspectRatio(contentMode: .fit)
-                        .frame(width: 950, height: 600)
+                        .aspectRatio(contentMode: .fill)
+                        .frame(width: 900, height: 600)
                         .clipShape(RoundedRectangle(cornerRadius: 0))
-                  
+                    
                     ZStack{
                         RoundedRectangle(cornerRadius: 32)
                             .frame(width: 360,height: 40)
@@ -30,8 +30,26 @@ struct InQuizzView: View {
                             .foregroundStyle(LinearGradient(gradient: Gradient(colors: [Color.accent, Color.background3,Color.background2, Color.background1]), startPoint: .topLeading, endPoint: .bottomTrailing))
                     }
                     .padding(.bottom,380)
+  
+// Eléments sur la photo :
                     
-                    VStack{
+                    HStack{
+                        
+                        ZStack{
+                            Circle()
+                                .stroke(lineWidth: 8)
+                                .fill(LinearGradient(gradient: Gradient(colors: [Color.backgroundCard,Color.accent]), startPoint: .bottomLeading, endPoint: .topLeading))
+                                .frame(width: 80)
+                            
+                            Text("8")
+                                .foregroundStyle(.backgroundCard)
+                                .font(.system(size: 70))
+                                .fontWeight(.black)
+                                .fontDesign(.rounded)
+                                
+                        }
+                        .padding(.trailing,60)
+                        
                         ZStack{
                             Circle()
                                 .frame(width: 60)
@@ -41,12 +59,18 @@ struct InQuizzView: View {
                                 .font(.largeTitle)
                                 .fontWeight(.heavy)
                         }
-                        .padding(.bottom,30)
+                        
+                        //                            .padding(.bottom,30)
+                        
+                    }
+                    .padding(.bottom,236)
+                    .padding(.leading,140)
+                                        
                         ZStack{
                             RoundedRectangle(cornerRadius: 32, )
                                 .frame(width: 100,height: 40)
                                 .foregroundStyle(.accent)
-                                
+                            
                             HStack{
                                 Image(systemName: "p.circle.fill")
                                     .foregroundStyle(.backgroundCard)
@@ -59,18 +83,18 @@ struct InQuizzView: View {
                                     .fontWeight(.black)
                                     .padding(.leading, 15)
                             }
-                            
+//                        
                             
                         }
-                        .padding(.bottom,160)
-                    }
-                    .padding(.leading, 300)
+                    .padding(.leading, 280)
                     
-                   
+                    
                 }
-                    Spacer()
+                Spacer()
                 
             }.ignoresSafeArea()
+            
+// Bas de l'écran avec boutons :
             
             VStack{
                 Spacer(minLength: 480)
@@ -85,9 +109,10 @@ struct InQuizzView: View {
                         .foregroundStyle(.backgroundCard)
                         .fontWeight(.semibold)
                         .kerning(3)
-                        
+                    
                 }
-            
+              
+                
                 
                 ZStack{
                     
@@ -101,9 +126,61 @@ struct InQuizzView: View {
                             .foregroundStyle(.foreground1)
                             .fontWidth(.condensed)
                             .kerning(2)
-                            .padding(20)
-                        Spacer()
+                        
+                        
+                        HStack{
+                            ZStack{
+                                RoundedRectangle(cornerRadius: 32)
+                                    .foregroundStyle(LinearGradient(gradient: Gradient(colors: [Color.accent,Color.background3,Color.background1]), startPoint: .top, endPoint: .bottom))
+                                    .frame(width: 190,height: 100)
+                                    .shadow(radius: 4, x: 0, y: 1)
+                                Text("Léopard")
+                                    .font(.title)
+                                    .foregroundStyle(.backgroundCard)
+                                    .fontWeight(.bold)
+                                    .kerning(1)
+                            }
+                            ZStack{
+                                RoundedRectangle(cornerRadius: 32)
+                                    .foregroundStyle(LinearGradient(gradient: Gradient(colors: [Color.accent,Color.background3,Color.background1]), startPoint: .top, endPoint: .bottom))
+                                    .frame(width: 190,height: 100)
+                                    .shadow(radius: 4, x: 0, y: 1)
+                                Text("Guépard")
+                                    .font(.title)
+                                    .foregroundStyle(.backgroundCard)
+                                    .fontWeight(.bold)
+                                    .kerning(1)
+                            }
+                        }
+                        HStack{
+                            ZStack{
+                                RoundedRectangle(cornerRadius: 32)
+                                    .foregroundStyle(LinearGradient(gradient: Gradient(colors: [Color.accent,Color.background3,Color.background1]), startPoint: .top, endPoint: .bottom))
+                                    .frame(width: 190,height: 100)
+                                    .shadow(radius: 4, x: 0, y: 1)
+                                Text("Jaguar")
+                                    .font(.title)
+                                    .foregroundStyle(.backgroundCard)
+                                    .fontWeight(.bold)
+                                    .kerning(1)
+                            }
+                            ZStack{
+                                RoundedRectangle(cornerRadius: 32)
+                                    .foregroundStyle(LinearGradient(gradient: Gradient(colors: [Color.accent,Color.background3,Color.background1]), startPoint: .top, endPoint: .bottom))
+                                    .frame(width: 190,height: 100)
+                                    .shadow(radius: 4, x: 0, y: 1)
+                                Text("Couguar")
+                                    .font(.title)
+                                    .foregroundStyle(.backgroundCard)
+                                    .fontWeight(.bold)
+                                    .kerning(1)
+                                
+                            }
+                        }
+                        .padding(.bottom)
+                        
                     }
+                    
                 }
                 
             }
