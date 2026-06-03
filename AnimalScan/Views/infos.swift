@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct infos: View {
+    @State private var sugarCubes: Double = 0.0
+    
     var body: some View {
         ZStack {
             LinearGradient(gradient: Gradient(colors: [Color.background1, Color.background2]), startPoint: .topLeading, endPoint: .bottom)
@@ -105,7 +107,7 @@ struct WebPill: View {
             .frame(maxWidth: .infinity, minHeight: 100, alignment: .leading)
             .background(
                 RoundedRectangle(cornerRadius: 10)
-                    .fill(.white.opacity(0.75))
+                    .fill(.ultraThinMaterial)
                     .shadow(color: .black.opacity(0.08), radius: 3, x: 0, y: 4)
             )
         }

@@ -8,13 +8,13 @@
 import SwiftUI
 
 struct BlogHubView: View {
-    @State private var activeEvent = false
+    @State private var activeEvent = true
     @State private var activeActivity = false
     @State private var activeArticle = false
     
     var body: some View {
         ZStack {
-            LinearGradient(gradient: Gradient(colors: [Color.background1, Color.background2]), startPoint: .topLeading, endPoint: .bottom)
+            LinearGradient(gradient: Gradient(colors: [Color.background1, Color.background2, Color.background3]), startPoint: .topLeading, endPoint: .bottom)
                 .ignoresSafeArea()
             VStack {
                 Text("Blog")
@@ -204,14 +204,14 @@ struct EventCard: View {
                     .padding()
                 }
             }
-            .frame(height: active ? .infinity : 150)
+            .frame(height: active ? .infinity : 150, alignment: .leading)
             .animation(.easeInOut, value: active)
             .containerRelativeFrame(.horizontal) { length, _ in
                 length * 0.85
             }
             .background(
                 RoundedRectangle(cornerRadius: 10)
-                    .fill(.white.opacity(1))
+                    .fill(.ultraThinMaterial)
                     .shadow(color: .black.opacity(0.5), radius: 3, x: 3, y: 4)
             )
         }
