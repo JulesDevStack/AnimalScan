@@ -101,31 +101,34 @@ struct InQuizzView: View {
                 
                 ZStack{
                     
-                    UnevenRoundedRectangle(topLeadingRadius: 32, bottomLeadingRadius: 0, bottomTrailingRadius: 0, topTrailingRadius: 32)
-                        .frame(width: 90, height: 40)
-                        .foregroundStyle(.accent)
-                    Text("1/10")
-                        .font(.title3)
-                        .foregroundStyle(.backgroundCard)
-                        .fontWeight(.semibold)
-                        .kerning(3)
-                    
-                }
-              
-                
-                
-                ZStack{
-                    
                     RoundedRectangle(cornerRadius: 70)
                         .foregroundStyle(.backgroundCard)
                         .frame(width: 410, height: 370)
                     
+                    ZStack{
+                        
+                        UnevenRoundedRectangle(topLeadingRadius: 32, bottomLeadingRadius: 0, bottomTrailingRadius: 0, topTrailingRadius: 32)
+                            .frame(width: 90, height: 35)
+                            .foregroundStyle(.accent)
+                            
+                        Text("1/10")
+                            .font(.title3)
+                            .foregroundStyle(.backgroundCard)
+                            .fontWeight(.semibold)
+                            .kerning(3)
+                            
+                        
+                    }
+                    .padding(.bottom,405)
+                    
                     VStack{
                         Text("Quelle est cette espèce ? ")
-                            .font(.largeTitle)
+                            .font(.system(size: 30))
                             .foregroundStyle(.foreground1)
                             .fontWidth(.condensed)
-                            .kerning(2)
+                            .fontDesign(.serif)
+                            .kerning(1)
+                            .padding(.bottom,20)
                         
                         
                         HStack{
@@ -137,7 +140,7 @@ struct InQuizzView: View {
                                 Text("Léopard")
                                     .font(.title)
                                     .foregroundStyle(.backgroundCard)
-                                    .fontWeight(.bold)
+                                    .fontWeight(.semibold)
                                     .kerning(1)
                             }
                             ZStack{
@@ -148,7 +151,7 @@ struct InQuizzView: View {
                                 Text("Guépard")
                                     .font(.title)
                                     .foregroundStyle(.backgroundCard)
-                                    .fontWeight(.bold)
+                                    .fontWeight(.semibold)
                                     .kerning(1)
                             }
                         }
@@ -161,7 +164,7 @@ struct InQuizzView: View {
                                 Text("Jaguar")
                                     .font(.title)
                                     .foregroundStyle(.backgroundCard)
-                                    .fontWeight(.bold)
+                                    .fontWeight(.semibold)
                                     .kerning(1)
                             }
                             ZStack{
@@ -172,12 +175,12 @@ struct InQuizzView: View {
                                 Text("Couguar")
                                     .font(.title)
                                     .foregroundStyle(.backgroundCard)
-                                    .fontWeight(.bold)
+                                    .fontWeight(.semibold)
                                     .kerning(1)
                                 
                             }
                         }
-                        .padding(.bottom)
+                        .padding(.bottom,20)
                         
                     }
                     
