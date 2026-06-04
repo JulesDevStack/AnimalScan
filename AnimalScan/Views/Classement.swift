@@ -10,6 +10,7 @@ import SwiftUI
 struct Classement: View {
     @State private var selectedTab = "semaine"
     
+    
     var body: some View {
         ZStack {
             LinearGradient(gradient: Gradient(colors: [Color.background1, Color.background2, Color.background3]), startPoint: .topLeading, endPoint: .bottom)
@@ -17,11 +18,12 @@ struct Classement: View {
             
             VStack(alignment: .leading, spacing: 12) {
                 Text("Classements")
-                    .font(.system(size: 22, weight: .bold))
+                    .font(.system(size: 42, weight: .bold))
+                    .foregroundStyle(.foreground1.gradient)
                     .padding(.bottom, 20)
                     .frame(maxWidth: .infinity)
                 
-                HStack {
+                HStack(spacing: 0) {
                     Button {
                         selectedTab = "semaine"
                     } label: {
@@ -33,7 +35,7 @@ struct Classement: View {
                         .frame(maxWidth: .infinity)
                         .padding()
                         .background(
-                            UnevenRoundedRectangle(topLeadingRadius: 32, bottomLeadingRadius: 0, bottomTrailingRadius: 0, topTrailingRadius: 32)
+                            UnevenRoundedRectangle(topLeadingRadius: 16, bottomLeadingRadius: 0, bottomTrailingRadius: 0, topTrailingRadius: 16)
                                 .fill(selectedTab == "semaine" ? .foreground1 : .background2)
                         )
                     }
@@ -48,7 +50,7 @@ struct Classement: View {
                         .frame(maxWidth: .infinity)
                         .padding()
                         .background(
-                            UnevenRoundedRectangle(topLeadingRadius: 32, bottomLeadingRadius: 0, bottomTrailingRadius: 0, topTrailingRadius: 32)
+                            UnevenRoundedRectangle(topLeadingRadius: 16, bottomLeadingRadius: 0, bottomTrailingRadius: 0, topTrailingRadius: 16)
                                 .fill(selectedTab == "general" ? .foreground1 : .background2)
                         )
                     }
@@ -58,34 +60,21 @@ struct Classement: View {
                 ScrollView {
                     if selectedTab == "semaine" {
                         VStack {
-                            UserRanking(userName: "Yann", userScore: 3200, firstPlace: true)
-                            UserRanking(userName: "José", userScore: 3100, firstPlace: false)
-                            UserRanking(userName: "Yamine", userScore: 3000, firstPlace: false)
-                            UserRanking(userName: "Charlotte", userScore: 2900, firstPlace: false)
-                            UserRanking(userName: "Jules", userScore: 2900, firstPlace: false)
-                            UserRanking(userName: "John Doe", userScore: 2900, firstPlace: false)
-                            UserRanking(userName: "Charlotte", userScore: 2900, firstPlace: true)
-                            UserRanking(userName: "Jules", userScore: 2900, firstPlace: false)
-                            UserRanking(userName: "John Doe", userScore: 2900, firstPlace: false)
-                            UserRanking(userName: "Yann", userScore: 3200, firstPlace: false)
-                            UserRanking(userName: "José", userScore: 3100, firstPlace: false)
-                            UserRanking(userName: "Yamine", userScore: 3000, firstPlace: false)
+                            ForEach(users.sorted(by: {$0.weeklyScore>$1.weeklyScore} ).enumerated(), id: \.offset) { index, user in
+//                                if index==0 {
+                                    UserRanking(user: user, score: user.weeklyScore, firstPlace: index==0)
+//                                }
+                            }
                         }
                         .frame(maxWidth: .infinity, alignment: .leading)
                     } else if selectedTab == "general" {
                         VStack {
-                            UserRanking(userName: "Charlotte", userScore: 2900, firstPlace: true)
-                            UserRanking(userName: "Jules", userScore: 2900, firstPlace: false)
-                            UserRanking(userName: "John Doe", userScore: 2900, firstPlace: false)
-                            UserRanking(userName: "Yann", userScore: 3200, firstPlace: false)
-                            UserRanking(userName: "José", userScore: 3100, firstPlace: false)
-                            UserRanking(userName: "Yamine", userScore: 3000, firstPlace: false)
-                            UserRanking(userName: "Charlotte", userScore: 2900, firstPlace: true)
-                            UserRanking(userName: "Jules", userScore: 2900, firstPlace: false)
-                            UserRanking(userName: "John Doe", userScore: 2900, firstPlace: false)
-                            UserRanking(userName: "Yann", userScore: 3200, firstPlace: false)
-                            UserRanking(userName: "José", userScore: 3100, firstPlace: false)
-                            UserRanking(userName: "Yamine", userScore: 3000, firstPlace: false)
+                            ForEach(users.enumerated(), id: \.offset) { index, user in
+                                UserRanking(user: user, score: user.score, firstPlace: index==0)
+                            }
+//                            ForEach(users) { user in
+//                                UserRanking(user: user, score: user.score, firstPlace: false)
+//                            }
                         }
                         .frame(maxWidth: .infinity, alignment: .leading)
                     }
@@ -144,17 +133,17 @@ struct Classement: View {
 }
 
 struct UserRanking: View {
-    let userName: String
-    let userScore: Int
+    let user: User
+    let score: Int
     let firstPlace: Bool
     
     var body: some View {
         HStack {
             VStack {
-                Text(userName)
+                Text(user.username)
                     .font(.title3)
                     .frame(maxWidth: .infinity, alignment: .leading)
-                Text(String(userScore))
+                Text(String(score))
                     .font(.callout)
                     .frame(maxWidth: .infinity, alignment: .leading)
             }

@@ -78,8 +78,8 @@ struct BlogHubView: View {
                                 
                                 ScrollView(.horizontal, showsIndicators: false, content: {
                                     HStack(spacing: 8) {
-                                        ForEach(articles) { article in
-                                            NavigationLink(destination: BlogArticleView(article: article, nextArticle: article)) {
+                                        ForEach(articles.enumerated(), id: \.offset) { (index, article) in
+                                            NavigationLink(destination: BlogArticleView(article: article, nextArticle: articles[index==articles.count-1 ? 0 : index+1], index: index)) {
                                                 EventCard(article: article, icon: "megaphone", ctaLabel: "Lire l'événement", active: activeEvent)
                                             }
                                         }
@@ -107,9 +107,9 @@ struct BlogHubView: View {
                                 ScrollView(.horizontal, showsIndicators: false, content: {
                                     HStack(spacing: 8) {
                                         ForEach(articles.reversed()) { article in
-                                            NavigationLink(destination: BlogArticleView(article: article, nextArticle: article)) {
-                                                EventCard(article: article, icon: "megaphone", ctaLabel: "Lire l'activité", active: activeActivity)
-                                            }
+//                                            NavigationLink(destination: BlogArticleView(article: article, nextArticle: article)) {
+//                                                EventCard(article: article, icon: "megaphone", ctaLabel: "Lire l'activité", active: activeActivity)
+//                                            }
                                         }
                                     }
                                     .padding(.top)
@@ -135,9 +135,9 @@ struct BlogHubView: View {
                                 ScrollView(.horizontal, showsIndicators: false, content: {
                                     HStack(spacing: 8) {
                                         ForEach(articles.reversed()) { article in
-                                            NavigationLink(destination: BlogArticleView(article: article, nextArticle: article)) {
-                                                EventCard(article: article, icon: "megaphone", ctaLabel: "Lire l'article", active: activeArticle)
-                                            }
+//                                            NavigationLink(destination: BlogArticleView(article: article, nextArticle: article)) {
+//                                                EventCard(article: article, icon: "megaphone", ctaLabel: "Lire l'article", active: activeArticle)
+//                                            }
                                         }
                                     }
                                     .padding(.top)
