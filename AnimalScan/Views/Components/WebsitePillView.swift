@@ -6,7 +6,7 @@
 //
 import SwiftUI
 
-struct WebsitePill: View {
+struct WebsitePillView: View {
     var website: Website
     var body: some View {
         Button {
@@ -36,5 +36,5 @@ struct WebsitePill: View {
 }
 
 #Preview {
-    WebsitePill(website: Website(name: "Ligue protectrice des oiseaux", url: "lpo.fr"))
+    WebsitePillView(website: Website(name: "Ligue protectrice des oiseaux", url: "lpo.fr"))
 }

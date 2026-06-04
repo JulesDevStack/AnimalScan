@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct infos: View {
+struct InfosView: View {
     @State private var sugarCubes: Double = 0.0
     
     var body: some View {
@@ -45,7 +45,7 @@ struct infos: View {
                         .frame(maxWidth: .infinity, alignment: .leading)
                         
                         ForEach(websites) { website in
-                            WebsitePill(website: website)
+                            WebsitePillView(website: website)
                         }
                     }
                 }
@@ -79,5 +79,5 @@ struct PhonePill: View {
 }
 
 #Preview {
-    infos()
+    InfosView()
 }
