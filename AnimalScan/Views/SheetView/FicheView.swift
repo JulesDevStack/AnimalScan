@@ -10,6 +10,7 @@ import SwiftUI
 struct FicheView: View {
     @State private var textContainer: Bool = false
     @State private var isScrolled: Bool = false
+    var sheet : Sheet
     var body: some View {
         ZStack {
             LinearGradient(gradient: Gradient(colors: [Color.background1, Color.background2, Color.background3]), startPoint: .topLeading, endPoint: .bottom)
@@ -19,23 +20,23 @@ struct FicheView: View {
                 ScrollView{
                     Text("Bravo !")
                         .font(.title)
-                    Text("tu as découvert un dragon")
+                    Text("tu as découvert un \(sheet.name)")
                     ZStack{
                         VStack {
-                            Image(.dragon)
+                            Image(sheet.image)
                                 .resizable()
                                 .scaledToFit()
                                 .cornerRadius(16)
                                 .padding(20)
                             HStack {
-                                Text("Dragon Bleu")
+                                Text(sheet.name)
                                     .font(.title2)
                                     .padding(.horizontal,20)
                                     .padding(.vertical,10)
                                 Spacer()
                             }
                             VStack {
-                                Text("Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus. Suspendisse lectus tortor, dignissim sit amet, adipiscing nec, ultricies sed, dolor. Cras elementum ultrices diam. Maecenas ligula massa, varius a, semper congue, euismod non, mi. Proin porttitor, orci Suspendisse lectus tortor, dignissim sit amet, adipiscing nec, ultricies sed, dolor. Cras elementum ultrices diam. Maecenas ligula massa, varius a, semper congue, euismod non, mi. Proin porttitor, orci Suspendisse lectus tortor, dignissim sit amet, adipiscing nec, ultricies sed, dolor. Cras elementum ultrices diam. Maecenas ligula massa, varius a, semper congue, euismod non, mi. Proin porttitor, orci")
+                                Text(sheet.description)
                                     .multilineTextAlignment(.leading)
                                     .padding(.horizontal)
                                     .frame(maxWidth: .infinity,maxHeight: isScrolled ? .infinity : 200, alignment: .leading)
@@ -156,6 +157,8 @@ struct FicheView: View {
     }
 }
 
-#Preview {
-    FicheView()
+struct FicheView_Previews : PreviewProvider {
+    static var previews: some View {
+        FicheView(sheet: Sheet(image: "clap", name: "Django", description: "blabla"))
+    }
 }
