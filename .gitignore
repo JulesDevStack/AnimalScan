@@ -1,3 +1,4 @@
 AnimalScan.xcodeproj/project.pbxproj
 xcuserdata/
 *.xcuserstate
+.DS_Store
