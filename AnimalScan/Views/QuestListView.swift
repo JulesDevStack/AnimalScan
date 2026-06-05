@@ -73,11 +73,10 @@ struct QuestListView: View {
                             .shadow(radius: 4)
                     )
                     
-                    VStack(spacing: 16) {
+                    VStack(alignment: .leading, spacing: 16) {
                         Text("Quêtes quotidiennes")
                             .font(.system(size: 32, weight: .medium))
                             .foregroundStyle(.foreground1)
-                            .frame(maxWidth: .infinity, alignment: .leading)
                         
                         ForEach(quests.filter({$0.type == .daily})) { quest in
                             QuestRowView(quest: quest)
