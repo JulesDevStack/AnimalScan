@@ -61,7 +61,7 @@ struct HubQuizView: View {
                         
                         
                         NavigationLink{
-                            Classement()
+                            RankingView()
                         }label:{
                             ZStack{
                                 UnevenRoundedRectangle(topLeadingRadius: 32, bottomLeadingRadius: 0, bottomTrailingRadius: 0, topTrailingRadius: 32)
@@ -286,8 +286,8 @@ struct HubQuizView: View {
                     
                     
                     ScrollView{
-                        ForEach(lists){list in
-                            HubListRowView(imageName: list.image, titleName: list.name, savingName: list.saving, symbolName: list.symbol, levelName: list.level, coloriconName: list.coloricon)
+                        ForEach(quizzs){quizz in
+                            HubListRowView(imageName: quizz.image, titleName: quizz.name, savingName: quizz.saving, symbolName: quizz.symbol, levelName: quizz.level, coloriconName: quizz.coloricon)
                         }
                         //                        VStack{
                         //                            ZStack{

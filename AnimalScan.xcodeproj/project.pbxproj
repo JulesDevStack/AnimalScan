@@ -10,22 +10,9 @@
 		A7CEF5612FCDB08600D56178 /* AnimalScan.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AnimalScan.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
-/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
-		707E17A32FD06C9100B5CC4F /* Exceptions for "AnimalScan" folder in "AnimalScan" target */ = {
-			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
-			membershipExceptions = (
-				Info.plist,
-			);
-			target = A7CEF5602FCDB08600D56178 /* AnimalScan */;
-		};
-/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
-
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		A7CEF5632FCDB08600D56178 /* AnimalScan */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
-			exceptions = (
-				707E17A32FD06C9100B5CC4F /* Exceptions for "AnimalScan" folder in "AnimalScan" target */,
-			);
 			path = AnimalScan;
 			sourceTree = "<group>";
 		};

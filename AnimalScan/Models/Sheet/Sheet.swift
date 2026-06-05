@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Foundation
 
 struct Sheet : Identifiable {
     var id = UUID()
@@ -14,7 +15,7 @@ struct Sheet : Identifiable {
     var description : String
 }
 
-var sheets = [
+var sheets: [Sheet] = [
     
     Sheet(image: "dragon", name: "Dragon", description: "Le dragon est une créature légendaire présente dans les récits et les mythologies de nombreuses civilisations. Selon les traditions, il habite des montagnes isolées, des grottes profondes, des châteaux oubliés ou encore des royaumes cachés dans les nuages. Son apparence varie selon les cultures, mais il est souvent décrit comme un immense reptile couvert d'écailles et doté d'une force extraordinaire. Dans les légendes occidentales, le dragon est fréquemment associé au feu, aux trésors et aux aventures héroïques. Dans les cultures asiatiques, il est davantage considéré comme un symbole de sagesse, de prospérité et de puissance spirituelle. Certaines histoires lui attribuent même le contrôle des vents, des pluies et des rivières. Créature intelligente et mystérieuse, le dragon est souvent présenté comme un gardien de connaissances anciennes ou de richesses inestimables. Son image continue d'inspirer les contes, les romans, les films et les jeux vidéo à travers le monde."),
     
