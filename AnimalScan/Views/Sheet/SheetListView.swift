@@ -14,7 +14,6 @@ struct SheetListView: View {
                 LinearGradient(gradient: Gradient(colors: [Color.background1, Color.background2, Color.background3]), startPoint: .topLeading, endPoint: .bottom)
                     .ignoresSafeArea()
                 VStack{
-                    
                     Text("Vos cartes")
                         .font(.title)
                         .padding(.top, 20)
