@@ -32,7 +32,7 @@ var quests = [
     Quest(target: "Lire 2 articles de blog", reward: 200, type: .daily, progress: 1, objective: 2),
     Quest(target: "Scanner un oiseau", reward: 200, type: .daily, progress: 0, objective: 1),
     
-    Quest(target: "Scanner 50 animaux", reward: 3500, type: .monthly, progress: 15, objective: 50),
+    Quest(target: "Scanner 50 animaux", reward: 3500, type: .monthly, progress: 45, objective: 50),
     Quest(target: "Trouver 5 oiseaux rares", reward: 3500, type: .monthly, progress: 2, objective: 5),
     Quest(target: "Réussir 10 quiz parfaits", reward: 3500, type: .monthly, progress: 4, objective: 10),
     Quest(target: "Scanner 5 reptiles différents", reward: 3500, type: .monthly, progress: 1, objective: 5)
