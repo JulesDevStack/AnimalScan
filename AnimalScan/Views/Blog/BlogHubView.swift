@@ -86,9 +86,28 @@ struct BlogHubView: View {
                                 } label: {
                                     HStack {
                                         Image(systemName: "megaphone\(activeTab == .event ? ".fill" : "")")
+                                            .foregroundStyle(activeTab == .event ? .foreground1 : .black)
                                         Text("Evénements")
+                                            .foregroundStyle(activeTab == .event ? .foreground1 : .black)
                                         Spacer()
-                                        Image(systemName: activeTab == .event ? "chevron.up" : "chevron.down").padding(.trailing, 8)
+                                        HStack(spacing: 8) {
+                                            Text(activeTab == .event ? "Voir moins" : "Voir plus")
+                                            Image(systemName: activeTab == .event ? "chevron.up" : "chevron.down")
+                                        }
+                                        .font(.footnote)
+                                        .foregroundStyle(activeTab == .event ? .background1 : .black)
+                                        .padding(.horizontal, 16)
+                                        .padding(.vertical, 8)
+                                        .background(
+                                            Capsule()
+                                                .fill(activeTab == .event ? .foreground1 : .white.opacity(0.95))
+                                                .shadow(color: .black.opacity(0.5), radius: 3, x: 3, y: 4)
+                                        )
+                                        .overlay {
+                                            Capsule()
+                                                .stroke(Color.accent.opacity(0.75), lineWidth: 2)
+                                        }
+                                        .padding(.trailing, 8)
                                     }
                                     .font(.system(size: 22, weight: .medium))
                                     .foregroundStyle(.black)
@@ -114,10 +133,29 @@ struct BlogHubView: View {
                                     toggleTab(.activity)
                                 } label: {
                                     HStack {
-                                        Image(systemName: "star\(activeTab == .activity ? ".fill" : "")")
+                                        Image(systemName: "megaphone\(activeTab == .activity ? ".fill" : "")")
+                                            .foregroundStyle(activeTab == .activity ? .foreground1 : .black)
                                         Text("Activités")
+                                            .foregroundStyle(activeTab == .activity ? .foreground1 : .black)
                                         Spacer()
-                                        Image(systemName: activeTab == .activity ? "chevron.up" : "chevron.down").padding(.trailing, 8)
+                                        HStack(spacing: 8) {
+                                            Text(activeTab == .activity ? "Voir moins" : "Voir plus")
+                                            Image(systemName: activeTab == .activity ? "chevron.up" : "chevron.down")
+                                        }
+                                        .font(.footnote)
+                                        .foregroundStyle(activeTab == .activity ? .background1 : .black)
+                                        .padding(.horizontal, 16)
+                                        .padding(.vertical, 8)
+                                        .background(
+                                            Capsule()
+                                                .fill(activeTab == .activity ? .foreground1 : .white.opacity(0.95))
+                                                .shadow(color: .black.opacity(0.5), radius: 3, x: 3, y: 4)
+                                        )
+                                        .overlay {
+                                            Capsule()
+                                                .stroke(Color.accent.opacity(0.75), lineWidth: 2)
+                                        }
+                                        .padding(.trailing, 8)
                                     }
                                     .font(.system(size: 22, weight: .medium))
                                     .foregroundStyle(.black)
@@ -143,10 +181,29 @@ struct BlogHubView: View {
                                     toggleTab(.article)
                                 } label: {
                                     HStack {
-                                        Image(systemName: "book\(activeTab == .article ? ".fill" : "")")
-                                        Text("Articles")
+                                        Image(systemName: "megaphone\(activeTab == .article ? ".fill" : "")")
+                                            .foregroundStyle(activeTab == .article ? .foreground1 : .black)
+                                        Text("Activités")
+                                            .foregroundStyle(activeTab == .article ? .foreground1 : .black)
                                         Spacer()
-                                        Image(systemName: activeTab == .article ? "chevron.up" : "chevron.down").padding(.trailing, 8)
+                                        HStack(spacing: 8) {
+                                            Text(activeTab == .article ? "Voir moins" : "Voir plus")
+                                            Image(systemName: activeTab == .article ? "chevron.up" : "chevron.down")
+                                        }
+                                        .font(.footnote)
+                                        .foregroundStyle(activeTab == .article ? .background1 : .black)
+                                        .padding(.horizontal, 16)
+                                        .padding(.vertical, 8)
+                                        .background(
+                                            Capsule()
+                                                .fill(activeTab == .article ? .foreground1 : .white.opacity(0.95))
+                                                .shadow(color: .black.opacity(0.5), radius: 3, x: 3, y: 4)
+                                        )
+                                        .overlay {
+                                            Capsule()
+                                                .stroke(Color.accent.opacity(0.75), lineWidth: 2)
+                                        }
+                                        .padding(.trailing, 8)
                                     }
                                     .font(.system(size: 22, weight: .medium))
                                     .foregroundStyle(.black)

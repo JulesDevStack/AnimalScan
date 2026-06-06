@@ -58,17 +58,16 @@ struct QuestListView: View {
                         VStack {
                             if dailyProgress==dailyObjective {
                                 Text("Quotidiennes")
-                                    .font(.system(size: 20, weight: .bold, design: .rounded))
+                                    .font(.title3)
+                                    .fontWeight(.medium)
                                     .foregroundColor(Color(red: 0.1, green: 0.3, blue: 0.1))
                                     .shadow(color: .yellow, radius: 1)
                                 HStack {
                                     Text("\(dailyProgressText)/\(dailyObjectiveText)")
                                     Image(systemName: "checkmark.rectangle.stack.fill")
                                 }
-                                .font(.system(size: 20, weight: .bold, design: .rounded))
                                 .foregroundColor(Color(red: 0.1, green: 0.3, blue: 0.1))
                                 .shadow(color: .yellow, radius: 1)
-                                .padding(.top, 1)
                             } else {
                                 Text("Quotidiennes")
                                     .font(.title3)
@@ -85,20 +84,21 @@ struct QuestListView: View {
                             }
                         }
                         .padding()
+                        .frame(maxWidth: .infinity)
+                    
                         VStack {
                             if monthlyProgress==monthlyObjective {
                                 Text("Mensuelles")
-                                    .font(.system(size: 20, weight: .bold, design: .rounded))
+                                    .font(.title3)
+                                    .fontWeight(.medium)
                                     .foregroundColor(Color(red: 0.1, green: 0.3, blue: 0.1))
                                     .shadow(color: .yellow, radius: 1)
                                 HStack {
                                     Text("\(monthlyProgressText)/\(monthlyObjectiveText)")
                                     Image(systemName: "checkmark.rectangle.stack.fill")
                                 }
-                                .font(.system(size: 20, weight: .bold, design: .rounded))
                                 .foregroundColor(Color(red: 0.1, green: 0.3, blue: 0.1))
                                 .shadow(color: .yellow, radius: 1)
-                                .padding(.top, 1)
                             } else {
                                 Text("Mensuelles")
                                     .font(.title3)
@@ -115,6 +115,7 @@ struct QuestListView: View {
                             }
                         }
                         .padding()
+                        .frame(maxWidth: .infinity)
                     }
                     .background(
                         RoundedRectangle(cornerRadius: 12)
@@ -128,13 +129,9 @@ struct QuestListView: View {
                             .foregroundStyle(.foreground1)
                             .frame(maxWidth: .infinity, alignment: .leading)
                         
-                        ForEach($questsList) { $quest in
+                        ForEach($questsList.sorted(by: { $0.wrappedValue.done == !$1.wrappedValue.done })) { $quest in
                             if $quest.wrappedValue.type == .daily {
-                                QuestRowView(quest: $quest) {
-                                    withAnimation {
-                                        questsList.removeAll(where: {$0.progress == $0.objective})
-                                    }
-                                }
+                                QuestRowView(quest: $quest)
                             }
                         }
                     }
@@ -146,11 +143,9 @@ struct QuestListView: View {
                             .foregroundStyle(.foreground1)
                             .frame(maxWidth: .infinity, alignment: .leading)
                         
-                        ForEach($questsList) { $quest in
+                        ForEach($questsList.sorted(by: { $0.wrappedValue.done == !$1.wrappedValue.done })) { $quest in
                             if $quest.wrappedValue.type == .monthly {
-                                QuestRowView(quest: $quest) {
-                                    questsList.removeAll(where: {$0.progress == $0.objective})
-                                }
+                                QuestRowView(quest: $quest)
                             }
                         }
                     }

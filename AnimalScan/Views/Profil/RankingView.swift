@@ -10,6 +10,23 @@ import SwiftUI
 struct RankingView: View {
     @State private var selectedTab = "semaine"
     
+    init() {
+        // foreground selected picker
+        UISegmentedControl.appearance().setTitleTextAttributes(
+            [.foregroundColor: UIColor.white], for: .selected
+        )
+        
+        // foreground picker
+        UISegmentedControl.appearance().setTitleTextAttributes(
+            [.foregroundColor: UIColor(Color.foreground1)], for: .normal
+        )
+        
+        // background selected picker
+        UISegmentedControl.appearance().selectedSegmentTintColor = UIColor(Color.foreground1)
+        
+        // background picker
+        UISegmentedControl.appearance().backgroundColor = UIColor(Color.background1.opacity(0.2))
+    }
     
     var body: some View {
         NavigationStack {
@@ -54,46 +71,53 @@ struct RankingView: View {
                         .padding(.horizontal)
                         .frame(maxWidth: .infinity)
                         
-                        HStack(spacing: 0) {
-                            Button {
-                                selectedTab = "semaine"
-                            } label: {
-                                HStack {
-                                    Image(systemName: "calendar")
-                                    Text("SEMAINE")
-                                }
-                                .foregroundStyle(selectedTab == "semaine" ? .white : .foreground1)
-                                .frame(maxWidth: .infinity)
-                                .padding()
-                                .background(
-                                    UnevenRoundedRectangle(topLeadingRadius: 12, bottomLeadingRadius: 0, bottomTrailingRadius: 0, topTrailingRadius: 12)
-                                        .fill(selectedTab == "semaine" ? .foreground1 : .background2)
-                                        .shadow(color: .black.opacity(0.2), radius: 3, x: 3, y: 4)
-                                )
-                            }
-                            Button {
-                                selectedTab = "general"
-                            } label: {
-                                HStack {
-                                    Image(systemName: "crown\(selectedTab == "general" ? ".fill" : "")")
-                                    Text("GENERAL")
-                                }
-                                .foregroundStyle(selectedTab == "general" ? .white : .foreground1)
-                                .frame(maxWidth: .infinity)
-                                .padding()
-                                .background(
-                                    UnevenRoundedRectangle(topLeadingRadius: 12, bottomLeadingRadius: 0, bottomTrailingRadius: 0, topTrailingRadius: 12)
-                                        .fill(selectedTab == "general" ? .foreground1 : .background2)
-        //                            RoundedRectangle(cornerRadius: 10)
-        //                                .fill(.ultraThinMaterial)
-                                        .shadow(color: .black.opacity(0.2), radius: 3, x: 3, y: 4)
-                                )
-                            }
+    //                        HStack(spacing: 0) {
+    //                            Button {
+    //                                selectedTab = "semaine"
+    //                            } label: {
+    //                                HStack {
+    //                                    Image(systemName: "calendar")
+    //                                    Text("SEMAINE")
+    //                                }
+    //                                .foregroundStyle(selectedTab == "semaine" ? .white : .background1)
+    //                                .frame(maxWidth: .infinity)
+    //                                .padding()
+    //                                .background(
+    //                                    UnevenRoundedRectangle(topLeadingRadius: 12, bottomLeadingRadius: 0, bottomTrailingRadius: 0, topTrailingRadius: 12)
+    //                                        .foregroundStyle(selectedTab == "semaine" ? LinearGradient(colors: [Color.accent, Color.accent.opacity(0)], startPoint: .top, endPoint: .bottom) : LinearGradient(colors: [Color.background1.opacity(0), Color.background3.opacity(0)], startPoint: .top, endPoint: .bottom))
+    //                                        .shadow(color: .black.opacity(0.2), radius: 3, x: 3, y: 4)
+    //                                )
+    //                            }
+    //                            Button {
+    //                                selectedTab = "general"
+    //                            } label: {
+    //                                HStack {
+    //                                    Image(systemName: "crown\(selectedTab == "general" ? ".fill" : "")")
+    //                                    Text("GENERAL")
+    //                                }
+    //                                .foregroundStyle(selectedTab == "general" ? .white : .foreground1)
+    //                                .frame(maxWidth: .infinity)
+    //                                .padding()
+    //                                .background(
+    //                                    UnevenRoundedRectangle(topLeadingRadius: 12, bottomLeadingRadius: 0, bottomTrailingRadius: 0, topTrailingRadius: 12)
+    //                                        .foregroundStyle(selectedTab == "general" ? LinearGradient(colors: [Color.accent, Color.accent.opacity(0)], startPoint: .top, endPoint: .bottom) : LinearGradient(colors: [Color.background1.opacity(0), Color.background3.opacity(0)], startPoint: .top, endPoint: .bottom))
+    //                                        .shadow(color: .black.opacity(0.2), radius: 3, x: 3, y: 4)
+    //                                )
+    //                            }
+    //                        }
+    //                        .padding(.horizontal, 16)
+    //                        .frame(maxWidth: .infinity)
+
+
+                        
+                        Picker("Séléction du classement", selection: $selectedTab) {
+                            Text("Semaine")
+                                .tag("semaine")
+                            Text("Général")
+                                .tag("general")
                         }
-                        .padding(.horizontal, 16)
-                        .frame(maxWidth: .infinity)
-                        
-                        
+                        .pickerStyle(.palette)
+                        .padding()
                         
                         VStack {
                             if selectedTab == "semaine" {
@@ -107,7 +131,6 @@ struct RankingView: View {
                             }
                         }
                         .padding(.horizontal)
-                        
                     }
                 }
                 

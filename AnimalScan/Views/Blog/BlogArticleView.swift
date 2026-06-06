@@ -84,6 +84,7 @@ struct BlogArticleView: View {
                                 )
                             }
                         }
+                        .padding(.bottom, 128)
                     }
                 }
                 .padding()

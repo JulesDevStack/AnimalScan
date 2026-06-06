@@ -38,50 +38,89 @@ struct HubQuizView: View {
                         
                     }
                     
-                    HStack{
-                        Button{
+//                    HStack(spacing: 0) {
+//                        Button {
+//                            selectedTab = "semaine"
+//                        } label: {
+//                            HStack {
+//                                Image(systemName: "calendar")
+//                                Text("SEMAINE")
+//                            }
+//                            .foregroundStyle(selectedTab == "semaine" ? .white : .foreground1)
+//                            .frame(maxWidth: .infinity)
+//                            .padding()
+//                            .background(
+//                                UnevenRoundedRectangle(topLeadingRadius: 12, bottomLeadingRadius: 0, bottomTrailingRadius: 0, topTrailingRadius: 12)
+//                                    .fill(selectedTab == "semaine" ? .foreground1 : .background2)
+//                                    .shadow(color: .black.opacity(0.2), radius: 3, x: 3, y: 4)
+//                            )
+//                        }
+//                        Button {
+//                            selectedTab = "general"
+//                        } label: {
+//                            HStack {
+//                                Image(systemName: "crown\(selectedTab == "general" ? ".fill" : "")")
+//                                Text("GENERAL")
+//                            }
+//                            .foregroundStyle(selectedTab == "general" ? .white : .foreground1)
+//                            .frame(maxWidth: .infinity)
+//                            .padding()
+//                            .background(
+//                                UnevenRoundedRectangle(topLeadingRadius: 12, bottomLeadingRadius: 0, bottomTrailingRadius: 0, topTrailingRadius: 12)
+//                                    .fill(selectedTab == "general" ? .foreground1 : .background2)
+//    //                            RoundedRectangle(cornerRadius: 10)
+//    //                                .fill(.ultraThinMaterial)
+//                                    .shadow(color: .black.opacity(0.2), radius: 3, x: 3, y: 4)
+//                            )
+//                        }
+//                    }
+//                    .padding(.horizontal, 16)
+//                    .frame(maxWidth: .infinity)
+                    
+                    HStack {
+                        Button {
                             
-                        }label:{
-                            ZStack{
-                                UnevenRoundedRectangle(topLeadingRadius: 32, bottomLeadingRadius: 0, bottomTrailingRadius: 0, topTrailingRadius: 32)
-                                    .frame(width: 178, height: 72)
-                                    .foregroundStyle(LinearGradient(colors: [Color.accent, Color.accent.opacity(0)], startPoint: .top, endPoint: .bottom))
+                        } label: {
+                            HStack {
+                                Image(systemName: "puzzlepiece.fill")
+                                    .foregroundStyle(.backgroundCard)
                                 
-                                HStack{
-                                    Image(systemName: "puzzlepiece.fill")
-                                        .foregroundStyle(.backgroundCard)
-                                    
-                                    Text ("Mini-jeux")
-                                        .foregroundStyle(.backgroundCard)
-                                        .kerning(1)
-                                        .padding(5)
-                                }
+                                Text("Mini-jeux")
+                                    .foregroundStyle(.backgroundCard)
+                                    .kerning(1)
+                                    .padding(5)
                             }
+                            .padding()
+                            .frame(maxWidth: .infinity)
+                            .background(
+                                UnevenRoundedRectangle(topLeadingRadius: 12, bottomLeadingRadius: 0, bottomTrailingRadius: 0, topTrailingRadius: 12)
+//                                    .frame(width: 178, height: 72)
+                                    .foregroundStyle(LinearGradient(colors: [Color.accent, Color.accent.opacity(0)], startPoint: .top, endPoint: .bottom))
+                            )
                         }
-                        
                         
                         NavigationLink{
                             RankingView()
-                        }label:{
-                            ZStack{
-                                UnevenRoundedRectangle(topLeadingRadius: 32, bottomLeadingRadius: 0, bottomTrailingRadius: 0, topTrailingRadius: 32)
-                                    .frame(width: 178, height: 60)
-                                    .foregroundStyle(LinearGradient(colors: [Color.backgroundCard, Color.backgroundCard], startPoint: .top, endPoint: .bottom))
+                        } label: {
+                            HStack{
+                                Image(systemName: "crown.fill")
+                                    .foregroundStyle(.accent)
                                 
-                                
-                                HStack{
-                                    Image(systemName: "crown.fill")
-                                        .foregroundStyle(.accent)
-                                    
-                                    Text ("Classement")
-                                        .foregroundStyle(.accent)
-                                        .kerning(1)
-                                        .padding(5)
-                                }
+                                Text ("Classement")
+                                    .foregroundStyle(.accent)
+                                    .kerning(1)
+                                    .padding(5)
                             }
+                            .padding()
+                            .frame(maxWidth: .infinity)
+                            .background(
+                                UnevenRoundedRectangle(topLeadingRadius: 12, bottomLeadingRadius: 0, bottomTrailingRadius: 0, topTrailingRadius: 12)
+//                                    .frame(width: 178, height: 60)
+                                    .foregroundStyle(LinearGradient(colors: [Color.backgroundCard, Color.backgroundCard], startPoint: .top, endPoint: .bottom))
+                            )
                         }
-                        
                     }
+                    .padding(.horizontal)
                     
                     
                     
