@@ -19,10 +19,15 @@ struct Quest: Identifiable {
     var type: QuestType
     var progress: Int
     var objective: Int
+    var done: Bool {
+        withAnimation {
+            progress == objective
+        }
+    }
 }
 
 var quests = [
-    Quest(target: "Scanner 3 mammifères", reward: 200, type: .daily, progress: 2, objective: 3),
+    Quest(target: "Scanner 3 mammifères", reward: 200, type: .daily, progress: 3, objective: 3),
     Quest(target: "Compléter 1 quiz", reward: 200, type: .daily, progress: 0, objective: 1),
     Quest(target: "Lire 2 articles de blog", reward: 200, type: .daily, progress: 1, objective: 2),
     Quest(target: "Scanner un oiseau", reward: 200, type: .daily, progress: 0, objective: 1),

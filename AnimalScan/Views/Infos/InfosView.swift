@@ -12,14 +12,17 @@ struct InfosView: View {
     
     var body: some View {
         ZStack {
-            LinearGradient(gradient: Gradient(colors: [Color.background1, Color.background2]), startPoint: .topLeading, endPoint: .bottom)
+            LinearGradient(gradient: Gradient(colors: [Color.background1, Color.background2, Color.background3]), startPoint: .topLeading, endPoint: .bottom)
                 .ignoresSafeArea()
             ScrollView(.vertical, showsIndicators: false) {
                 VStack(alignment: .leading, spacing: 12) {
-                    Text("Informations générales")
-                        .font(.system(size: 22, weight: .bold))
-                        .padding(.bottom, 24)
-                        .frame(maxWidth: .infinity)
+                    Text("Informations")
+                        .font(.system(size: 50))
+                        .foregroundStyle(LinearGradient(gradient: Gradient(colors: [Color.foreground1,Color.accent,Color.background3,Color.background2]), startPoint: .top, endPoint: .bottom))
+                        .fontWeight(.heavy)
+                        .padding()
+                        .fontDesign(.serif)
+                        .frame(maxWidth: .infinity, alignment: .center)
                     
                     VStack(alignment: .leading, spacing: 20) {
                         HStack {

@@ -9,10 +9,15 @@
 import SwiftUI
 
 struct QuestRowView: View {
-    var quest: Quest
+    @Binding var quest: Quest
+    var onCompleted: (() -> Void)? = nil
+    
     var body: some View {
         Button {
-//            quest.progress += 1
+            if quest.progress < quest.objective {
+                quest.progress += 1
+            }
+            
         } label: {
             VStack {
                 HStack {
@@ -30,13 +35,29 @@ struct QuestRowView: View {
                         )
                 }
                 .frame(maxWidth: .infinity, alignment: .leading)
-                HStack {
+                HStack(spacing: 16) {
                     ProgressView(value: Double(quest.progress), total: Double(quest.objective))
                         .tint(.foreground1)
                         .background(.white)
                         .clipShape(Capsule())
                         .scaleEffect(x: 1, y: 1.5)
-                    Text("\(quest.progress)/\(quest.objective)")
+                    if !quest.done {
+                        Text("\(quest.progress)/\(quest.objective)")
+                            .foregroundStyle(quest.done ? Color(red: 0.3, green: 0.7, blue: 0.3, opacity: 1) : .foreground1)
+                            .fontWeight(.bold)
+                    }
+                }
+                if quest.done {
+                    HStack {
+                        Text("QUÊTE RÉUSSI !")
+                            .font(.system(size: 16, weight: .bold, design: .rounded))
+                            .foregroundColor(Color(red: 0.1, green: 0.3, blue: 0.1))
+                            .shadow(color: .yellow, radius: 1)
+                        
+                        Text("\(quest.progress)/\(quest.objective)")
+                            .foregroundStyle(quest.done ? Color(red: 0.3, green: 0.7, blue: 0.3, opacity: 1) : .foreground1)
+                            .fontWeight(.bold)
+                    }
                 }
             }
             .foregroundStyle(.black)
@@ -47,6 +68,7 @@ struct QuestRowView: View {
                     .shadow(radius: 4)
             )
         }
+        .buttonStyle(.plain)
     }
 }
 
@@ -54,6 +76,6 @@ struct QuestRowView: View {
     ZStack {
         LinearGradient(gradient: Gradient(colors: [Color.background1, Color.background2, Color.background3]), startPoint: .topLeading, endPoint: .bottom)
             .ignoresSafeArea()
-        QuestRowView(quest: Quest(target: "Scanner un oiseau", reward: 200, type: .daily, progress: 3, objective: 5))
+        QuestRowView(quest: .constant(quests[0]))
     }
 }
