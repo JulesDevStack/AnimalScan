@@ -14,8 +14,10 @@ struct QuestRowView: View {
     
     var body: some View {
         Button {
-            if quest.progress < quest.objective {
-                quest.progress += 1
+            withAnimation(.spring(response: 0.4, dampingFraction: 0.8)) {
+                if quest.progress < quest.objective {
+                    quest.progress += 1
+                }
             }
             
         } label: {
@@ -36,18 +38,20 @@ struct QuestRowView: View {
                 }
                 .frame(maxWidth: .infinity, alignment: .leading)
                 HStack(spacing: 16) {
-                    ProgressView(value: Double(quest.progress), total: Double(quest.objective))
-                        .tint(.foreground1)
-                        .background(.white)
-                        .clipShape(Capsule())
-                        .scaleEffect(x: 1, y: 1.5)
                     if !quest.done {
+                        ProgressView(value: Double(quest.progress), total: Double(quest.objective))
+                            .tint(.foreground1)
+                            .background(.white)
+                            .clipShape(Capsule())
+                            .scaleEffect(x: 1, y: 1.5)
                         Text("\(quest.progress)/\(quest.objective)")
                             .foregroundStyle(quest.done ? Color(red: 0.3, green: 0.7, blue: 0.3, opacity: 1) : .foreground1)
                             .fontWeight(.bold)
                     }
                 }
                 if quest.done {
+                    GoldProgressBar(progress: 1, height: 6)
+                        .padding(.vertical, 8)
                     HStack {
                         Text("QUÊTE RÉUSSI !")
                             .font(.system(size: 16, weight: .bold, design: .rounded))

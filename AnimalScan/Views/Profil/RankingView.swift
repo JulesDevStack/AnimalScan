@@ -33,6 +33,7 @@ struct RankingView: View {
             ZStack {
                 LinearGradient(gradient: Gradient(colors: [Color.background1, Color.background2, Color.background3]), startPoint: .topLeading, endPoint: .bottom)
                     .ignoresSafeArea()
+                    
                 
                 ScrollView {
                     VStack(alignment: .leading) {
@@ -137,6 +138,9 @@ struct RankingView: View {
 //                .padding(.horizontal)
             }
         }
+//        .navigationTitle("RAnking")
+//        .navigationBarBackButtonHidden()
+//        .navigationBarTitleDisplayMode(.large)
     }
 }
 
