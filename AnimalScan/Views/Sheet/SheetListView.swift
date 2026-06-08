@@ -18,22 +18,12 @@ struct SheetListView: View {
                     Text("Vos cartes")
                         .font(.title)
                         .padding(.top, 20)
-                    
-                    
-                    List(sheets){ sheet in
+
+                    List(animalSheets){ animalSheet in
                         NavigationLink{
-                            FicheView(sheet: sheet)
+                            FicheView(animalSheet: animalSheet)
                         }label: {
-                            HStack{
-                                Image(sheet.image)
-                                    .resizable()
-                                    .scaledToFill()
-                                    .frame(width: 80, height: 80)
-                                    .clipShape(RoundedRectangle(cornerRadius: 32))
-                                
-                                Text(sheet.name)
-                                    .font(.headline)
-                            }
+                            SheetRowView(animalSheet: animalSheet)
                         }
                         .listRowBackground(
                             RoundedRectangle(cornerRadius: 16)
