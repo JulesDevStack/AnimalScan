@@ -15,6 +15,10 @@ struct TapBar: View {
                     .tabItem {
                         Label("Scanner", systemImage: "camera")
                     }
+                SheetListView()
+                    .tabItem {
+                        Label("Wiki", systemImage: "building.columns")
+                    }
                 HubQuizView()
                     .tabItem {
                         Label("Quizz", systemImage: "gamecontroller")
