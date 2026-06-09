@@ -38,12 +38,11 @@ struct ResultQuestionView: View {
                     NavigationLink(destination: InQuizzView(qe: qe).onAppear(){ qe.nextQuestion()}){
                         
                                     }
-                    .simultaneousGesture(TapGesture().onEnded {
-                        qe.nextQuestion()
-                    })
+                    
                                 }
                 
                 }
+            
             }.navigationBarBackButtonHidden()
          }
         
@@ -51,5 +50,5 @@ struct ResultQuestionView: View {
 
 
 #Preview {
-    ResultQuestionView(qe: QuestionEngine(), isCorrect: true)
+    ResultQuestionView(qe: QuestionEngine(), isCorrect: false)
 }

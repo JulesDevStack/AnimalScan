@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct FicheQuizView: View {
+
     var quizz: Quizz
     
     var body: some View {

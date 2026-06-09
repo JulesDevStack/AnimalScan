@@ -10,18 +10,19 @@ import Combine
 
 struct DefeatView: View {
     @ObservedObject var qe: QuestionEngine
+    
     @State private var progress: Float = 15
     @State private var timeRemain = 15
     @State private var currentScore = 1.0
     
-    let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
+    let timerCount = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
 
     var body: some View {
         ZStack{
             LinearGradient(gradient: Gradient(colors: [Color.background1, Color.background2, Color.background3]), startPoint: .topLeading, endPoint: .bottom)
                 .ignoresSafeArea()
             
-            ProgressView(value: Float(qe.score), total: 10 ){
+            ProgressView(value: Float(qe.score), total: 15.00 ){
               
                    } currentValueLabel: {
                        Text("\(Int(timeRemain))")
@@ -29,7 +30,7 @@ struct DefeatView: View {
                            .font(.system(size: 50))
                            .fontWeight(.black)
                            .fontDesign(.rounded)
-                           .onReceive(timer) { _ in
+                           .onReceive(timerCount) { _ in
                                
                                DispatchQueue.main.asyncAfter(deadline: .now() + 0.6) {
                                    if timeRemain > 0 && progress > 0 {
@@ -40,7 +41,7 @@ struct DefeatView: View {
                                }
                                if timeRemain == 0 && progress == 0 {
 
-                                   timer.upstream.connect().cancel()
+                                   timerCount.upstream.connect().cancel()
                                }
                                
                                if currentScore > 0 {

@@ -257,7 +257,11 @@ struct InQuizzView: View {
                                     
                                     }
                                     .simultaneousGesture(TapGesture().onEnded {
-                                        qe.nextQuestion()
+                                        if QuestionChoice.isCorrect{
+                                            qe.gotCorrect()
+                                        }else{
+                                            qe.invalidateTimer()
+                                        }
                                     })
                                     .navigationBarBackButtonHidden()
                             }

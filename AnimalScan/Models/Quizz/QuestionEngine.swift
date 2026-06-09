@@ -28,7 +28,7 @@ class QuestionEngine: ObservableObject {
         timer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true, block: { time in
             if self.score > 0 {
                 self.score -= 1
-                print (self.score)
+                print ("\(self.score)")
             }else {
                 print ("Timer done")
                 self.timer.invalidate()
@@ -84,6 +84,12 @@ class QuestionEngine: ObservableObject {
         }
     }
     
+    func resetQuizz(){
+        self.timer.invalidate()
+        QuestionEngine.currentQuestion = 0
+        QuestionEngine.numberCorrect = 0
+        totalScore = 0
+    }
     
     func invalidateTimer() {
         self.timer.invalidate()

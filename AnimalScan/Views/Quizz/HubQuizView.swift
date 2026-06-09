@@ -59,7 +59,7 @@ struct HubQuizView: View {
                             ZStack{
                                 UnevenRoundedRectangle(topLeadingRadius: 32, bottomLeadingRadius: 32, bottomTrailingRadius: 32, topTrailingRadius: 32)
                                     .frame(width: 50, height: 50)
-                                    .foregroundStyle(.accent.opacity(0.9))
+                                    .foregroundStyle(.accent.opacity(0.8))
                                 UnevenRoundedRectangle(topLeadingRadius: 32, bottomLeadingRadius: 32, bottomTrailingRadius: 32, topTrailingRadius: 32)
                                     .frame(width: 40, height: 40)
                                     .foregroundStyle(.backgroundCard)
@@ -67,9 +67,9 @@ struct HubQuizView: View {
                                 
                                 HStack{
                                     Image(systemName: "crown.fill")
-                                        .foregroundStyle(.accent.opacity(0.7))
+                                        .foregroundStyle(.accent)
                                         
-                                
+                                    
                                 }
                             }
                             .glassEffect(.clear)

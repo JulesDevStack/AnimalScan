@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct WinView: View {
-    
+    @ObservedObject var qe: QuestionEngine
     
     var body: some View {
         NavigationStack{
@@ -189,7 +189,7 @@ struct WinView: View {
                                     .foregroundStyle(.backgroundCard)
                                     .padding(.trailing,15)
                                 
-                                Text("10/10")
+                                Text("\(qe.manyCorrect())/\(qe.model.questionModel.totalQuestion)")
                                     .font(.system(size: 23))
                                     .foregroundStyle(.backgroundCard)
                                     .fontWeight(.black)
@@ -204,9 +204,9 @@ struct WinView: View {
                                 Image(systemName: "p.circle.fill")
                                     .font(.system(size: 25))
                                     .foregroundStyle(.backgroundCard)
-                                    .padding(.leading,90)
+                                    .padding(.leading,80)
                                 
-                                Text("98 points")
+                                Text("\(qe.totalScore) points")
                                     .font(.system(size: 23))
                                     .foregroundStyle(.backgroundCard)
                                     .fontWeight(.black)
@@ -228,7 +228,7 @@ struct WinView: View {
                                             .foregroundStyle(.backgroundCard)
                                         
                                     }
-                                    .padding(.trailing,15)
+                                    .padding(.trailing,9)
                                     .padding(.bottom,40)
                                 }
                             }
@@ -294,5 +294,5 @@ struct WinView: View {
 }
 
 #Preview {
-    WinView()
+    WinView(qe: QuestionEngine())
 }
