@@ -11,17 +11,19 @@ struct HubQuizzRowView: View {
     
     @State private var isSaved = false
     @State private var saves = 0
+//    @State private var sheets = sheetquizs
     
-    var imageName: String
-    var titleName: String
-    var savingName: String
-    var symbolName: String
-    var levelName: String
-    var coloriconName: Color
+//    var imageName: String
+//    var titleName: String
+//    var savingName: String
+//    var symbolName: String
+//    var levelName: String
+//    var coloriconName: Color
+    var quizz: Quizz
     
     var body: some View {
-        
-        
+        NavigationLink(destination: FicheQuizView(quizz: quizz)) {
+            
             VStack{
                 
                 ZStack{
@@ -30,69 +32,72 @@ struct HubQuizzRowView: View {
                         .frame(width: 365, height: 90)
                         .foregroundStyle(.backgroundCard)
                     
-                    HStack{
-                        
-                        Image(imageName)
+                    
+                        Image(quizz.image)
                             .resizable()
                             .aspectRatio(contentMode: .fill)
                             .frame(width: 150, height: 90)
                             .clipShape(RoundedRectangle(cornerRadius: 32))
-                            .offset(x:-17 ,y:0)
-                        
-                        
-                        VStack(alignment: .leading){
-                            HStack{
-                                NavigationLink{
-                                  FicheQuizView()
-                                }label:{
-                                    Text(titleName)
-                                        .foregroundStyle(.foreground1)
-                                        .fontWeight(.semibold)
-                                        .font(.headline)
-                                }
-                            }
-                            .offset(x: -10,y: -12)
+                            .padding(.trailing,220)
+                           
+                    
+                        VStack(alignment: .center){
                             
                             HStack{
-                                
-                                Image(systemName: symbolName)
-                                    .foregroundStyle(coloriconName)
-                                    .offset(x: -10,y: 15)
-                                Text(levelName)
-                                    .font(.caption2)
+                              
+                                Text(quizz.name)
                                     .foregroundStyle(.foreground1)
-                                    .offset(x: -10,y: 15)
+                                    .fontWeight(.semibold)
+                                    .font(.headline)
+                                    .padding(.bottom,20)
+                                
+                            }
+                            .padding(.leading,130)
+                            
+                            
+                            HStack(spacing: 90){
                                 
                                 HStack{
-                                    Button{
+                                    Image(systemName: quizz.symbol)
+                                        .foregroundStyle(quizz.coloricon)
                                         
-                                        if isSaved {
-                                            saves -= 1
-                                        } else {
-                                            saves += 1
-                                        }
+                                    Text(quizz.level)
+                                        .font(.caption2)
+                                        .foregroundStyle(.foreground1)
                                         
-                                        isSaved.toggle()
-                                    }label: {
-                                        Image(systemName: isSaved ? "bookmark.fill" : savingName )
-                                            .foregroundStyle(isSaved ? .foreground1 : .foreground1)
-                                            .font(.system(size: 20, weight: .semibold))
-                                        
-                                    }
                                 }
-                                .offset(x: 70,y: 15)
+                                .padding(.leading,130)
+                                .padding(.top,4)
+                                
+                                Button{
+                                    
+                                    if isSaved {
+                                        saves -= 1
+                                    } else {
+                                        saves += 1
+                                    }
+                                    
+                                    isSaved.toggle()
+                                }label: {
+                                    Image(systemName: isSaved ? "bookmark.fill" : quizz.saving )
+                                        .foregroundStyle(isSaved ? .foreground1 : .foreground1)
+                                        .font(.system(size: 20, weight: .semibold))
+                                        .padding(.top,4)
+                                }
+                                
+                                //                                .offset(x: 70,y: 15)
                                 
                                 
                             }
                         }
-                    }
+                    
                 }
                 
             }
-        
+        }
     }
 }
 
 #Preview {
-    HubQuizzRowView(imageName: "quizz1", titleName: "Reconnaître les Félins", savingName: "bookmark", symbolName: "leaf.fill", levelName: "FACILE", coloriconName: .mint)
+    HubQuizzRowView(quizz: quizzs[0])
 }

@@ -8,8 +8,12 @@
 import SwiftUI
 
 struct FicheQuizView: View {
+    var quizz: Quizz
+    
     var body: some View {
+        
         NavigationStack{
+            
             ZStack{
                 LinearGradient(gradient: Gradient(colors: [Color.background1, Color.background2, Color.background3]), startPoint: .topLeading, endPoint: .bottom)
                     .ignoresSafeArea()
@@ -18,21 +22,42 @@ struct FicheQuizView: View {
                     ZStack{
                         
                         UnevenRoundedRectangle(topLeadingRadius: 0,bottomLeadingRadius: 350,bottomTrailingRadius: 0,topTrailingRadius: 0)
+                            .frame(width: 480, height: 505)
+                            .foregroundStyle(.accent.opacity(0.7))
+                            .ignoresSafeArea()
+                        UnevenRoundedRectangle(topLeadingRadius: 0,bottomLeadingRadius: 350,bottomTrailingRadius: 0,topTrailingRadius: 0)
+                            .frame(width: 460, height: 500)
+                            .foregroundStyle(.background3)
+                            .ignoresSafeArea()
+                        UnevenRoundedRectangle(topLeadingRadius: 0,bottomLeadingRadius: 350,bottomTrailingRadius: 0,topTrailingRadius: 0)
+                            .frame(width: 430, height: 495)
+                            .foregroundStyle(.background2)
+                            .ignoresSafeArea()
+                        UnevenRoundedRectangle(topLeadingRadius: 0,bottomLeadingRadius: 350,bottomTrailingRadius: 0,topTrailingRadius: 0)
                             .frame(width: 400, height: 490)
                             .foregroundStyle(.backgroundCard)
                             .ignoresSafeArea()
+                        Image(quizz.image2)
+                            .resizable()
+                            .aspectRatio(contentMode: .fill)
+                            .frame(width: 292, height: 500)
+                            .padding(.leading,180)
                         
-                        HStack{
                             
-                            VStack{
+                        
+                            
+//                        HStack{
+                           
+                            
+                            VStack(alignment: .leading, spacing: 10){
                                 
                                 
                                 HStack{
                                     
-                                    Image(systemName: "leaf.fill")
+                                    Image(systemName: quizz.symbol)
                                         .foregroundStyle(.mint.secondary)
                                     
-                                    Text("FACILE")
+                                    Text(quizz.level)
                                         .font(.caption2)
                                         .foregroundStyle(.foreground1)
                                         .padding(.trailing)
@@ -45,7 +70,7 @@ struct FicheQuizView: View {
                                     Image(systemName: "questionmark.circle.fill")
                                         .foregroundStyle(.accent.secondary)
                                     
-                                    Text("10 QUESTIONS")
+                                    Text(" \(quizz.question) QUESTIONS")
                                         .font(.caption2)
                                         .foregroundStyle(.foreground1)
                                     
@@ -55,50 +80,47 @@ struct FicheQuizView: View {
                                     
                                     Image(systemName: "hourglass.tophalf.fill")
                                         .foregroundStyle(.foreground1.secondary)
-                                    Text("CHRONOMÉTRÉ")
+                                        
+                                    Text("   CHRONOMÉTRÉ")
                                         .font(.caption2)
                                         .foregroundStyle(.foreground1)
+//                                        .padding(.leading)
                                 }
                                 HStack{
                                     
                                     Image(systemName: "gift.fill")
                                         .foregroundStyle(.foreground1.secondary)
-                                    Text("1 CARTE RARE")
+                                    Text(" \(quizz.reward)")
                                         .font(.caption2)
                                         .foregroundStyle(.foreground1)
                                     
                                 }
+                              Spacer()
                             }
-                            
-                            Spacer(minLength: 100)
-                            Image("lynx")
-                                .resizable()
-                                .aspectRatio(contentMode: .fill)
-                                .frame(height: 495)
-                            
-                        }
-                        
-                        
-                        
+                            .padding(.top,80)
+                            .padding(.trailing,190)
+                       
                     }
-                    Spacer(minLength: 30)
+                    
+
                     
                     ZStack{
                         
                         UnevenRoundedRectangle(topLeadingRadius: 70,bottomLeadingRadius: 0,bottomTrailingRadius: 0,topTrailingRadius: 70)
-                            .frame(width: 400, height: 325)
+                            .frame(width: 400, height: 360)
                             .foregroundStyle(.backgroundCard)
+                            .padding(.top,20)
                         
                         VStack{
                             
-                            Text("Reconnaître  les   Félins")
+                            Text(quizz.name)
                                 .font(.title)
                                 .foregroundStyle(.foreground1)
                                 .kerning(2)
                                 .fontWeight(.semibold)
                                 .padding()
                             
-                            Text("Testez vos connaissances sur les plus grands Félidés  du monde,  avec  une image  et  quatre réponses.")
+                            Text(quizz.description)
                                 .frame(width: 335)
                                 .lineSpacing(6)
                                 .foregroundStyle(.foreground1)
@@ -124,6 +146,7 @@ struct FicheQuizView: View {
                                             .stroke(LinearGradient(gradient: Gradient(colors: [Color.accent,Color.background3,Color.background2]), startPoint: .top, endPoint: .bottom), lineWidth: 3))
                                 
                             }
+                            .padding(.bottom,50)
                             
                             
                             
@@ -132,7 +155,7 @@ struct FicheQuizView: View {
                         
                         
                     }
-                    .padding(.top)
+
                 }
             }
         }
@@ -140,5 +163,5 @@ struct FicheQuizView: View {
 }
 
 #Preview {
-    FicheQuizView()
+    FicheQuizView(quizz: quizzs[0])
 }
