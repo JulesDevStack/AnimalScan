@@ -34,12 +34,6 @@ struct profilStatCard: View {
     }
 }
 
-enum Rarity: String, CaseIterable {
-    case commun = "Commun"
-    case rare = "Rare"
-    case epic = "Épique"
-    case legendary = "Légendaire"
-}
 
 struct profilCollecCard: View {
     let image: String

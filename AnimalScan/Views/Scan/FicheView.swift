@@ -158,6 +158,6 @@ struct FicheView: View {
 
 struct FicheView_Previews : PreviewProvider {
     static var previews: some View {
-        FicheView(animalSheet: AnimalSheet(image: "clap", name: "Django", description: "blabla"))
+        FicheView(animalSheet: animalSheets.randomElement()!)
     }
 }
