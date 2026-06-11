@@ -37,7 +37,6 @@ struct DetailedFicheView: View {
                             Image(animalSheet.image)
                                 .resizable()
                                 .scaledToFit()
-                                .cornerRadius(16)
                             
                             Text(animalSheet.rarity.rawValue)
                                 .foregroundStyle(animalSheet.rarityColor)
@@ -53,81 +52,87 @@ struct DetailedFicheView: View {
                                 .padding()
                         }
                         
-                        VStack(spacing: 16) {
+                        VStack {
+                            VStack(spacing: 16) {
+                                HStack(alignment: .center) {
+                                    Text(animalSheet.scientificName)
+                                        .font(.title2)
+                                        .fontWeight(.semibold)
+                                    Spacer()
+                                    
+                                    Text(animalSheet.IUCNStatus.rawValue)
+                                        .foregroundStyle(animalSheet.IUCNStatusColor.mix(with: Color.black, by: 0.4))
+                                        .font(.system(size: 14, weight: .semibold))
+                                        .padding(.horizontal)
+                                        .padding(.vertical, 5)
+                                        .background(
+                                            Capsule()
+                                                .fill(Color.white.mix(with: animalSheet.IUCNStatusColor, by: 0.3).opacity(0.8))
+                                                .stroke(animalSheet.IUCNStatusColor, lineWidth: 2)
+                                        )
+                                }
+                                .frame(maxWidth: .infinity, alignment: .leading)
+                                
+                                HStack() {
+                                    VStack() {
+                                        Text("Habitat")
+                                            .foregroundStyle(Color.black)
+                                            .font(.system(size: 14, weight: .regular))
+                                            .frame(maxWidth: .infinity, alignment: .leading)
+                                        Text(animalSheet.habitat)
+                                            .foregroundStyle(Color.foreground1)
+                                            .font(.system(size: 16, weight: .medium))
+                                            .frame(maxWidth: .infinity, alignment: .leading)
+                                    }
+                                    
+                                    VStack() {
+                                        Text("Poids")
+                                            .foregroundStyle(Color.black)
+                                            .font(.system(size: 14, weight: .regular))
+                                            .frame(maxWidth: .infinity, alignment: .trailing)
+                                        Text(String("\(animalSheet.weight) kg"))
+                                            .foregroundStyle(Color.foreground1)
+                                            .font(.system(size: 16, weight: .medium))
+                                            .frame(maxWidth: .infinity, alignment: .trailing)
+                                    }
+                                }
+                                
+                                
+                                Text(animalSheet.description)
+                                    .multilineTextAlignment(.leading)
+                                    .frame(maxWidth: .infinity, alignment: .leading)
+                                
+                                if isScrolled {
+                                    Text(animalSheet.detailedDescription)
+                                        .multilineTextAlignment(.leading)
+                                        .frame(maxWidth: .infinity, alignment: .leading)
+                                }
+                            }
+                            
                             HStack(alignment: .center) {
-                                Text(animalSheet.scientificName)
-                                    .font(.title2)
-                                    .fontWeight(.semibold)
+                                Text("Scanné le \(animalSheet.discoverDate)")
+                                    .font(.subheadline)
+                                    .foregroundStyle(.foreground1)
+                                
                                 Spacer()
                                 
-                                Text(animalSheet.IUCNStatus.rawValue)
-                                    .foregroundStyle(animalSheet.IUCNStatusColor.mix(with: Color.black, by: 0.4))
-                                    .font(.system(size: 14, weight: .semibold))
-                                    .padding(.horizontal)
-                                    .padding(.vertical, 5)
-                                    .background(
-                                        Capsule()
-                                            .fill(Color.white.mix(with: animalSheet.IUCNStatusColor, by: 0.3).opacity(0.8))
-                                            .stroke(animalSheet.IUCNStatusColor, lineWidth: 2)
-                                    )
-                            }
-                            .frame(maxWidth: .infinity, alignment: .leading)
-                            
-                            HStack() {
-                                VStack() {
-                                    Text("Habitat")
-                                        .foregroundStyle(Color.black)
-                                        .font(.system(size: 14, weight: .regular))
-                                        .frame(maxWidth: .infinity, alignment: .leading)
-                                    Text(animalSheet.habitat)
-                                        .foregroundStyle(Color.foreground1)
-                                        .font(.system(size: 16, weight: .medium))
-                                        .frame(maxWidth: .infinity, alignment: .leading)
+                                Button {
+                                    withAnimation(.easeIn) {
+                                        isScrolled.toggle()
+                                    }
+                                } label: {
+                                    Image(systemName: isScrolled ? "chevron.up" : "chevron.down")
+                                        .foregroundStyle(.foreground1)
+                                        .font(.title)
+                                        .fontWeight(.semibold)
                                 }
                                 
-                                VStack() {
-                                    Text("Poids")
-                                        .foregroundStyle(Color.black)
-                                        .font(.system(size: 14, weight: .regular))
-                                        .frame(maxWidth: .infinity, alignment: .trailing)
-                                    Text(String("\(animalSheet.weight) kg"))
-                                        .foregroundStyle(Color.foreground1)
-                                        .font(.system(size: 16, weight: .medium))
-                                        .frame(maxWidth: .infinity, alignment: .trailing)
-                                }
                             }
-                            
-                            
-                            Text(animalSheet.description)
-                                .multilineTextAlignment(.leading)
-                                .frame(maxWidth: .infinity,maxHeight: isScrolled ? .infinity : 200, alignment: .leading)
+                            .padding()
+                            .frame(maxWidth: .infinity, alignment: .leading)
                         }
-                        
-                        if isScrolled {
-                            Text(animalSheet.detailedDescription)
-                                .multilineTextAlignment(.leading)
-                                .frame(maxWidth: .infinity, alignment: .leading)
-                        }
-                        
-                        
-                        Button {
-                            isScrolled.toggle()
-                        } label: {
-                            Image(systemName: isScrolled ? "chevron.up.circle.fill" : "chevron.down.circle.fill")
-                                .foregroundStyle(.black)
-                                .font(.title)
-                        }
-                        .padding(.bottom, 10)
-                        
-                        HStack {
-                            Text("Scanné le \(animalSheet.discoverDate)")
-                                .font(.subheadline)
-                            Spacer()
-                            
-                        }
-                        .frame(maxWidth: .infinity, alignment: .leading)
+                        .padding()
                     }
-                    .padding()
                     .frame(maxWidth: .infinity)
                     .background(
                         RoundedRectangle(cornerRadius: 16)
@@ -166,12 +171,12 @@ struct DetailedFicheView: View {
 
 struct DetailedFicheView_Previews : PreviewProvider {
     static var previews: some View {
-//        ScrollView {
-            DetailedFicheView(animalSheet: animalSheets[3])
-//            DetailedFicheView(animalSheet: animalSheets[1])
-//            DetailedFicheView(animalSheet: animalSheets[2])
-//            DetailedFicheView(animalSheet: animalSheets[3])
-//            DetailedFicheView(animalSheet: animalSheets[4])
-//        }
+        //        ScrollView {
+        DetailedFicheView(animalSheet: animalSheets[3])
+        //            DetailedFicheView(animalSheet: animalSheets[1])
+        //            DetailedFicheView(animalSheet: animalSheets[2])
+        //            DetailedFicheView(animalSheet: animalSheets[3])
+        //            DetailedFicheView(animalSheet: animalSheets[4])
+        //        }
     }
 }
