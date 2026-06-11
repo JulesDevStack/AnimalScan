@@ -73,7 +73,7 @@ struct PhonePill: View {
                     .padding(.horizontal, 18)
                     .background (
                         RoundedRectangle(cornerRadius: 10)
-                            .fill(.white.opacity(0.75))
+                            .fill(.backgroundCard)
                             .shadow(color: .black.opacity(0.08), radius: 3, x: 0, y: 4)
                     )
             }

@@ -79,7 +79,7 @@ struct BlogArticleView: View {
                                 .padding()
                                 .background(
                                     RoundedRectangle(cornerRadius: 10)
-                                        .fill(.ultraThinMaterial)
+                                        .fill(.backgroundCard)
                                         .shadow(color: .black.opacity(0.5), radius: 3, x: 3, y: 4)
                                 )
                             }

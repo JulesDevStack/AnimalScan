@@ -133,7 +133,7 @@ struct BlogHubView: View {
                                     toggleTab(.activity)
                                 } label: {
                                     HStack {
-                                        Image(systemName: "megaphone\(activeTab == .activity ? ".fill" : "")")
+                                        Image(systemName: "point.topleft.down.to.point.bottomright.curvepath\(activeTab == .activity ? ".fill" : "")")
                                             .foregroundStyle(activeTab == .activity ? .foreground1 : .black)
                                         Text("Activités")
                                             .foregroundStyle(activeTab == .activity ? .foreground1 : .black)
@@ -181,9 +181,9 @@ struct BlogHubView: View {
                                     toggleTab(.article)
                                 } label: {
                                     HStack {
-                                        Image(systemName: "megaphone\(activeTab == .article ? ".fill" : "")")
+                                        Image(systemName: "book\(activeTab == .article ? ".fill" : "")")
                                             .foregroundStyle(activeTab == .article ? .foreground1 : .black)
-                                        Text("Activités")
+                                        Text("Articles")
                                             .foregroundStyle(activeTab == .article ? .foreground1 : .black)
                                         Spacer()
                                         HStack(spacing: 8) {
@@ -270,6 +270,7 @@ struct EventCard: View {
                 HStack {
                     Text(article.title)
                         .font(.system(size: 16))
+                        .fontWeight(.semibold)
                         .foregroundStyle(.black)
                     Spacer()
                     Image(systemName: icon)
@@ -331,7 +332,7 @@ struct EventCard: View {
         }
         .background(
             RoundedRectangle(cornerRadius: 10)
-                .fill(.ultraThinMaterial)
+                .fill(.backgroundCard)
                 .shadow(color: .black.opacity(0.5), radius: 3, x: 3, y: 4)
         )
     }

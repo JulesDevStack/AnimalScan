@@ -68,8 +68,8 @@ struct QuestRowView: View {
             .padding(8)
             .background(
                 RoundedRectangle(cornerRadius: 12)
-                    .fill(.white.opacity(0.7))
-                    .shadow(radius: 4)
+                    .fill(.backgroundCard)
+                    .shadow(radius: 2)
             )
         }
         .buttonStyle(.plain)

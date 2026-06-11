@@ -21,7 +21,7 @@ struct AnimalCollecCard: View {
                 .frame(height: 160)
                 .clipped()
                 .clipShape(
-                    UnevenRoundedRectangle(topLeadingRadius: 20, bottomLeadingRadius: 0, bottomTrailingRadius: 0, topTrailingRadius: 20)
+                    RoundedRectangle(cornerRadius: 18)
                 )
             
             HStack {
@@ -45,8 +45,9 @@ struct AnimalCollecCard: View {
             .padding()
             
         }
+        .padding(5)
         .frame(maxWidth: .infinity)
-        .background(.backgroundCard.mix(with: .white, by: 0.2))
+        .background(.backgroundCard)
         .cornerRadius(20)
     }
 }

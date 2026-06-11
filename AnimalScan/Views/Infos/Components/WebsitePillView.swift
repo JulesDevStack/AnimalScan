@@ -28,7 +28,7 @@ struct WebsitePillView: View {
             .frame(maxWidth: .infinity, minHeight: 100, alignment: .leading)
             .background(
                 RoundedRectangle(cornerRadius: 10)
-                    .fill(.ultraThinMaterial)
+                    .fill(.backgroundCard)
                     .shadow(color: .black.opacity(0.08), radius: 3, x: 0, y: 4)
             )
         }

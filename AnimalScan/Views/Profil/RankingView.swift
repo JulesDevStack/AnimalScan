@@ -71,46 +71,7 @@ struct RankingView: View {
                         }
                         .padding(.horizontal)
                         .frame(maxWidth: .infinity)
-                        
-    //                        HStack(spacing: 0) {
-    //                            Button {
-    //                                selectedTab = "semaine"
-    //                            } label: {
-    //                                HStack {
-    //                                    Image(systemName: "calendar")
-    //                                    Text("SEMAINE")
-    //                                }
-    //                                .foregroundStyle(selectedTab == "semaine" ? .white : .background1)
-    //                                .frame(maxWidth: .infinity)
-    //                                .padding()
-    //                                .background(
-    //                                    UnevenRoundedRectangle(topLeadingRadius: 12, bottomLeadingRadius: 0, bottomTrailingRadius: 0, topTrailingRadius: 12)
-    //                                        .foregroundStyle(selectedTab == "semaine" ? LinearGradient(colors: [Color.accent, Color.accent.opacity(0)], startPoint: .top, endPoint: .bottom) : LinearGradient(colors: [Color.background1.opacity(0), Color.background3.opacity(0)], startPoint: .top, endPoint: .bottom))
-    //                                        .shadow(color: .black.opacity(0.2), radius: 3, x: 3, y: 4)
-    //                                )
-    //                            }
-    //                            Button {
-    //                                selectedTab = "general"
-    //                            } label: {
-    //                                HStack {
-    //                                    Image(systemName: "crown\(selectedTab == "general" ? ".fill" : "")")
-    //                                    Text("GENERAL")
-    //                                }
-    //                                .foregroundStyle(selectedTab == "general" ? .white : .foreground1)
-    //                                .frame(maxWidth: .infinity)
-    //                                .padding()
-    //                                .background(
-    //                                    UnevenRoundedRectangle(topLeadingRadius: 12, bottomLeadingRadius: 0, bottomTrailingRadius: 0, topTrailingRadius: 12)
-    //                                        .foregroundStyle(selectedTab == "general" ? LinearGradient(colors: [Color.accent, Color.accent.opacity(0)], startPoint: .top, endPoint: .bottom) : LinearGradient(colors: [Color.background1.opacity(0), Color.background3.opacity(0)], startPoint: .top, endPoint: .bottom))
-    //                                        .shadow(color: .black.opacity(0.2), radius: 3, x: 3, y: 4)
-    //                                )
-    //                            }
-    //                        }
-    //                        .padding(.horizontal, 16)
-    //                        .frame(maxWidth: .infinity)
-
-
-                        
+                                                
                         Picker("Séléction du classement", selection: $selectedTab) {
                             Text("Semaine")
                                 .tag("semaine")
@@ -134,13 +95,8 @@ struct RankingView: View {
                         .padding(.horizontal)
                     }
                 }
-                
-//                .padding(.horizontal)
             }
         }
-//        .navigationTitle("RAnking")
-//        .navigationBarBackButtonHidden()
-//        .navigationBarTitleDisplayMode(.large)
     }
 }
 
@@ -173,16 +129,9 @@ struct UserRanking: View {
         .foregroundStyle(.foreground1)
         .padding(.horizontal, 24)
         .padding(.vertical, 16)
-//        .glassEffect(.regular)
         .background(
-//            ZStack {
-//                RoundedRectangle(cornerRadius: 10)
-//                    .fill(.ultraThinMaterial)
-////                    .glassEffect(.regular)
-//                    .shadow(color: .black.opacity(0.2), radius: 3, x: 3, y: 4)
-//            }
             RoundedRectangle(cornerRadius: 12)
-                .fill(.white.opacity(0.65))
+                .fill(.backgroundCard)
         )
         .frame(maxWidth: .infinity, alignment: .leading)
     }
