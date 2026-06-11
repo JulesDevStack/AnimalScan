@@ -10,7 +10,7 @@ import SwiftUI
 struct FicheView: View {
     @State private var textContainer: Bool = false
     @State private var isScrolled: Bool = false
-    var sheet : Sheet
+    var animalSheet : AnimalSheet
     var body: some View {
         ZStack {
             LinearGradient(gradient: Gradient(colors: [Color.background1, Color.background2, Color.background3]), startPoint: .topLeading, endPoint: .bottom)
@@ -20,23 +20,23 @@ struct FicheView: View {
                 ScrollView{
                     Text("Bravo !")
                         .font(.title)
-                    Text("tu as découvert un \(sheet.name)")
+                    Text("tu as découvert un \(animalSheet.name)")
                     ZStack{
                         VStack {
-                            Image(sheet.image)
+                            Image(animalSheet.image)
                                 .resizable()
                                 .scaledToFit()
                                 .cornerRadius(16)
                                 .padding(20)
                             HStack {
-                                Text(sheet.name)
+                                Text(animalSheet.name)
                                     .font(.title2)
                                     .padding(.horizontal,20)
                                     .padding(.vertical,10)
                                 Spacer()
                             }
                             VStack {
-                                Text(sheet.description)
+                                Text(animalSheet.description)
                                     .multilineTextAlignment(.leading)
                                     .padding(.horizontal)
                                     .frame(maxWidth: .infinity,maxHeight: isScrolled ? .infinity : 200, alignment: .leading)
@@ -148,8 +148,7 @@ struct FicheView: View {
                         .shadow(radius: 10)
                     }
                     ZStack{
-                        
-                    }
+                     }
                     Spacer()
                 }
             }
@@ -159,6 +158,6 @@ struct FicheView: View {
 
 struct FicheView_Previews : PreviewProvider {
     static var previews: some View {
-        FicheView(sheet: Sheet(image: "clap", name: "Django", description: "blabla"))
+        FicheView(animalSheet: AnimalSheet(image: "clap", name: "Django", description: "blabla"))
     }
 }

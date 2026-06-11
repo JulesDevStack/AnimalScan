@@ -23,7 +23,7 @@ struct GoldProgressBar: View {
 
             ZStack(alignment: .leading) {
                 Capsule()
-                    .fill(Color.black)
+                    .fill(Color.foreground1)
                     .overlay(
                         Capsule()
                             .stroke(goldDark.opacity(0.4), lineWidth: 1)
@@ -59,9 +59,6 @@ struct GoldProgressBar: View {
 }
 
 #Preview {
-    ZStack {
-        Color(.white).ignoresSafeArea()
-        
-        GoldProgressBar(progress: 1.0, height: 8)
-    }
+    GoldProgressBar(progress: 0.8, height: 8)
+        .padding()
 }
