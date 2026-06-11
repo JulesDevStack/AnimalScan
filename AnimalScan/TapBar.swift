@@ -15,7 +15,7 @@ struct TapBar: View {
                     .tabItem {
                         Label("Scanner", systemImage: "camera")
                     }
-                SheetListView()
+                SpeciesListView()
                     .tabItem {
                         Label("Wiki", systemImage: "building.columns")
                     }
