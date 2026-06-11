@@ -96,10 +96,6 @@ struct FicheView: View {
 
 struct FicheViewPreview : PreviewProvider {
     static var previews: some View {
-<<<<<<< Updated upstream:AnimalScan/Views/Sheet/FicheView.swift
-        FicheView(animalSheet: AnimalSheet(image: "clap", name: "Django", description: "blabla"))
-=======
         FicheView(animalSheet: animalSheets[1])
->>>>>>> Stashed changes:AnimalScan/Views/Scan/FicheView.swift
     }
 }
