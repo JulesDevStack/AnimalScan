@@ -62,7 +62,8 @@ struct CountdownView: View {
                                     timeRemain -= 1
                                 }
                                 if timeRemain == 0 {
-//                                    NavigationLink(destination: InQuizzView (qe: qe).onAppear(){qe.model.questionModel.numberQuestion}){
+                                   
+                               
                                     }
                                 }
                             }

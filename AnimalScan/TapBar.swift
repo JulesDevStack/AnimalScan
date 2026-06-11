@@ -19,7 +19,7 @@ struct TapBar: View {
                     .tabItem {
                         Label("Wiki", systemImage: "building.columns")
                     }
-                HubQuizView()
+                HubQuizView(qe: QuestionEngine())
                     .tabItem {
                         Label("Quizz", systemImage: "gamecontroller")
                     }

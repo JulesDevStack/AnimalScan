@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct FicheQuizView: View {
-
+    @ObservedObject var qe: QuestionEngine
     var quizz: Quizz
     
     var body: some View {
@@ -130,7 +130,8 @@ struct FicheQuizView: View {
                                 .padding(.bottom)
                             
                             NavigationLink{
-                                CountdownView()
+//                                CountdownView()
+                                InQuizzView(qe:qe)
                             }label: {
                                 Text("COMMENCER")
                                     .padding()
@@ -164,5 +165,6 @@ struct FicheQuizView: View {
 }
 
 #Preview {
-    FicheQuizView(quizz: quizzs[0])
+    FicheQuizView(qe: QuestionEngine(), quizz: quizzs[0])
 }
+//qe: QuestionEngine(),

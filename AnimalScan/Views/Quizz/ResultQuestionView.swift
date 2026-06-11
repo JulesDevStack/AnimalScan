@@ -14,39 +14,46 @@ struct ResultQuestionView: View {
     var body: some View {
         NavigationStack{
             VStack{
-//                Si la réponse est correcte -> Question suivante
+                //                Si la réponse est correcte -> Question suivante
                 
-                if isCorrect{
-                    NavigationLink(destination: InQuizzView(qe: qe).onAppear(){ qe.nextQuestion()}){
-                        
-                        Text ("Bravo ! -> continuez ici <-")
-                    }
-//                    sinon -> DefeatView + nextQuestion
-                    
-                } else {
-                 Text("Mauvaise réponse :(")
-                    }
-                    
-//                Si c'est la dernière question -> WinView
+               
+                
+                //                Si c'est la dernière question -> WinView
                 
                 if qe.allDone() {
-                    Text("Vous avez terminé !")
+                    NavigationLink(destination: WinView(qe: qe).onAppear()){
+                     Text("Résultat")
+                    }
                     
-//                    sinon -> nextQuestion
+                    //                    sinon -> nextQuestion
                     
-                } else {
-                    NavigationLink(destination: InQuizzView(qe: qe).onAppear(){ qe.nextQuestion()}){
+                } else if isCorrect{
+                        NavigationLink(destination: InQuizzView(qe: qe).onAppear(){ qe.nextQuestion()}){
+                            
+                            Text ("-> continuez ici <-")
+                                .font(.title)
+                                .fontWeight(.bold)
+                        }
+                      
                         
-                                    }
+                    } else {
+                        Text("Mauvaise réponse :(")
+                        NavigationLink(destination: InQuizzView(qe: qe).onAppear(){ qe.nextQuestion()}){
+                            
+                            Text ("-> continuez ici <-")
+                                .font(.title)
+                                .fontWeight(.bold)
+                        }
+                    }
                     
-                                }
                 
-                }
+                
+            }
             
-            }.navigationBarBackButtonHidden()
-         }
-        
+        }.navigationBarBackButtonHidden()
     }
+    
+}
 
 
 #Preview {

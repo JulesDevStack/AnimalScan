@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct HubQuizView: View {
-    
+    @ObservedObject var qe: QuestionEngine
     var body: some View {
         
         NavigationStack{
@@ -99,17 +99,17 @@ struct HubQuizView: View {
                     
                     
                     VStack(alignment: .leading){
-                        
-                        
-                        ScrollView{
+                
                             
-                            ForEach(quizzs){quizz in
-                                //                            HubQuizzRowView(imageName: quizz.image, titleName: quizz.name, savingName: quizz.saving, symbolName: quizz.symbol, levelName: quizz.level, coloriconName: quizz.coloricon)
-                                HubQuizzRowView(quizz: quizz)
+                            ScrollView{
+                                
+                                ForEach(quizzs){quizz in
+                                    //                            HubQuizzRowView(imageName: quizz.image, titleName: quizz.name, savingName: quizz.saving, symbolName: quizz.symbol, levelName: quizz.level, coloriconName: quizz.coloricon)
+                                    HubQuizzRowView(qe: qe, quizz: quizz)
+                                }
+                                
                             }
                             
-                        }
-                        
                         
                         
                     }
@@ -120,5 +120,5 @@ struct HubQuizView: View {
     }
 }
 #Preview {
-    HubQuizView()
+    HubQuizView(qe: QuestionEngine())
 }

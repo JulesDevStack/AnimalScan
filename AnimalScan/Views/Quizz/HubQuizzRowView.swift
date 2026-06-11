@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct HubQuizzRowView: View {
-    
+    @ObservedObject var qe: QuestionEngine
     @State private var isSaved = false
     @State private var saves = 0
 //    @State private var sheets = sheetquizs
@@ -22,7 +22,7 @@ struct HubQuizzRowView: View {
     var quizz: Quizz
     
     var body: some View {
-        NavigationLink(destination: FicheQuizView(quizz: quizz)) {
+        NavigationLink(destination: FicheQuizView(qe: qe, quizz: quizz)) {
             
             VStack{
                 
@@ -99,5 +99,5 @@ struct HubQuizzRowView: View {
 }
 
 #Preview {
-    HubQuizzRowView(quizz: quizzs[0])
+    HubQuizzRowView(qe: QuestionEngine(),quizz: quizzs[0])
 }

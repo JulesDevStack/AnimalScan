@@ -9,18 +9,22 @@ import SwiftUI
 import Combine
 
 struct InQuizzView: View {
+    
     @ObservedObject var qe: QuestionEngine
+    
     var columns: [GridItem] = Array(repeating: GridItem(.fixed(180),spacing: 15),count: 2)
     
-    @State private var timeRemain = 15
+
+   
     @State private var isPushed = false
     @State private var showHint = false
     @State private var numberHint = true
     
     
-    let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
+
     
     var body: some View {
+        
         NavigationStack {
             ZStack{
                 LinearGradient(gradient: Gradient(colors: [Color.background1, Color.background2, Color.background3]), startPoint: .topLeading, endPoint: .bottom)
@@ -33,52 +37,79 @@ struct InQuizzView: View {
                             .aspectRatio(contentMode: .fill)
                             .frame(width: 450, height: 600)
                             .clipShape(RoundedRectangle(cornerRadius: 0))
-                        
-                        ZStack{
-                            RoundedRectangle(cornerRadius: 32)
-                                .frame(width: 360,height: 40)
-                                .foregroundStyle(.backgroundCard)
-                            UnevenRoundedRectangle(topLeadingRadius: 32, bottomLeadingRadius: 32, bottomTrailingRadius: 0, topTrailingRadius: 0)
-                                .frame(width: 340,height: 25)
-                                .foregroundStyle(LinearGradient(gradient: Gradient(colors: [Color.accent, Color.background3,Color.background2, Color.background1]), startPoint: .topLeading, endPoint: .bottomTrailing))
-                        }
-                        .padding(.bottom,380)
+//                        
+//                        ZStack{
+//                            RoundedRectangle(cornerRadius: 32)
+//                                .frame(width: 360,height: 40)
+//                                .foregroundStyle(.backgroundCard)
+//                            UnevenRoundedRectangle(topLeadingRadius: 32, bottomLeadingRadius: 32, bottomTrailingRadius: 0, topTrailingRadius: 0)
+//                                .frame(width: 340,height: 25)
+//                                .foregroundStyle(LinearGradient(gradient: Gradient(colors: [Color.accent, Color.background3,Color.background2, Color.background1]), startPoint: .topLeading, endPoint: .bottomTrailing))
+//                        }
+//                        .padding(.bottom,380)
                         
                         // Eléments sur la photo :
+                        ZStack{
+     
+                            Circle()
+                                .stroke(lineWidth: 4)
+                                .fill(LinearGradient(gradient: Gradient(colors: [Color.backgroundCard,Color.accent]), startPoint: .bottomLeading, endPoint: .topLeading))
+                                .frame(width: 80)
+                                .glassEffect(.clear)
+                            
+                                DefeatView(qe: qe)
+//                                Text("\(timeRemain)")
+//                                    .foregroundStyle(.backgroundCard)
+//                                    .font(.system(size: 50))
+//                                    .fontWeight(.black)
+//                                    .fontDesign(.rounded)
+//                                    .onReceive(timer) { _ in
+//
+//                                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+//                                            if timeRemain > 0 {
+//
+//                                                timeRemain -= 1
+//                                            }
+//                                        }
+//                                        if timeRemain == 0 {
+//
+//                                            timer.upstream.connect().cancel()
+//
+//                                        }
+//                                    }
+                        }
+                        .padding(.bottom,340)
                         
+                        ZStack{
+                           
+                            RoundedRectangle(cornerRadius: 32, )
+                                .frame(width: 110,height: 50)
+                                .foregroundStyle(.backgroundCard)
+                            RoundedRectangle(cornerRadius: 32, )
+                                .frame(width: 100,height: 40)
+                                .foregroundStyle(.accent)
+                            
+                            HStack{
+                                Image(systemName: "p.circle.fill")
+                                    .foregroundStyle(.backgroundCard)
+                                    .font(.title3)
+                                    .fontWeight(.heavy)
+                                
+                                Text("\(qe.totalScore)")
+                                    .font(.title)
+                                    .foregroundStyle(.backgroundCard)
+                                    .fontWeight(.black)
+                                    .padding(.leading, 15)
+                            }
+                            //
+                            
+                        }
+                        .padding(.leading, 280)
+                        .padding(.bottom,340)
+
                         HStack{
                             
-                            ZStack{
-         
-                                Circle()
-                                    .stroke(lineWidth: 4)
-                                    .fill(LinearGradient(gradient: Gradient(colors: [Color.backgroundCard,Color.accent]), startPoint: .bottomLeading, endPoint: .topLeading))
-                                    .frame(width: 80)
-                                    .glassEffect(.clear)
-                                
-                                                
-                                Text("\(timeRemain)")
-                                    .foregroundStyle(.backgroundCard)
-                                    .font(.system(size: 50))
-                                    .fontWeight(.black)
-                                    .fontDesign(.rounded)
-                                
-                                    .onReceive(timer) { _ in
-                                        
-                                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-                                            if timeRemain > 0 {
-                                                
-                                                timeRemain -= 1
-                                            }
-                                        }
-                                        if timeRemain == 0 {
-                                            
-                                            timer.upstream.connect().cancel()
-                                            
-                                        }
-                                    }
-                            }
-                            .padding(.trailing,60)
+                            
                             
                             Button{
                                 if isPushed{
@@ -110,38 +141,10 @@ struct InQuizzView: View {
                             //                            .padding(.bottom,30)
                             
                         }
-                        .padding(.bottom,236)
-                        .padding(.leading,140)
+                        .padding(.bottom,180)
+                        .padding(.leading,310)
                         
-                        
-                        
-                        ZStack{
-                           
-                            RoundedRectangle(cornerRadius: 32, )
-                                .frame(width: 110,height: 50)
-                                .foregroundStyle(.backgroundCard)
-                            RoundedRectangle(cornerRadius: 32, )
-                                .frame(width: 100,height: 40)
-                                .foregroundStyle(.accent)
-                            
-                            HStack{
-                                Image(systemName: "p.circle.fill")
-                                    .foregroundStyle(.backgroundCard)
-                                    .font(.title3)
-                                    .fontWeight(.heavy)
-                                
-                                Text("0")
-                                    .font(.title)
-                                    .foregroundStyle(.backgroundCard)
-                                    .fontWeight(.black)
-                                    .padding(.leading, 15)
-                            }
-                            //
-                            
-                        }
-                        .padding(.leading, 280)
-                        .padding(.bottom,100)
-                        
+                                                
                         if showHint{
                             
                                 ZStack{
@@ -155,7 +158,7 @@ struct InQuizzView: View {
                                             .frame(width: 250,height: 170)
                                             .foregroundStyle(.backgroundCard)
                                     
-                                    VStack(alignment: .center){
+                                    VStack{
                                     ZStack{
                                             Circle()
                                                 .frame(width: 50)
@@ -173,7 +176,7 @@ struct InQuizzView: View {
                                     
                                     }
                             }
-                            .padding(.top,150)
+                            .padding(.top,200)
                         }
                         if numberHint {
                             ZStack{
@@ -186,8 +189,8 @@ struct InQuizzView: View {
                                     .clipped()
                                     .foregroundStyle(.accent)
                             }
-                            .padding(.bottom,275)
-                            .padding(.leading,325)
+                            .padding(.bottom,230)
+                            .padding(.leading,335)
                             
                         }
                         
@@ -310,14 +313,17 @@ struct InQuizzView: View {
                     
                 }
             }
+            .navigationBarBackButtonHidden(true)
+            .onAppear {
+                qe.startTimer()
+            }
         }
-        .onAppear {
-            qe.startTimer()
-        }
-        .navigationBarBackButtonHidden()
+       
+
+        
     }
 }
 
 #Preview {
-    InQuizzView(qe: QuestionEngine(),)
+    InQuizzView(qe: QuestionEngine())
 }

@@ -20,7 +20,7 @@ class QuestionEngine: ObservableObject {
         return Question(currentQuestionIndex: i, questionModel: QuestionData[i])
     }
     var timer = Timer()
-    @Published var score = 15
+    @Published var score  = 15
     var totalScore = 0
     
     func startTimer() {
@@ -28,7 +28,7 @@ class QuestionEngine: ObservableObject {
         timer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true, block: { time in
             if self.score > 0 {
                 self.score -= 1
-                print ("\(self.score)")
+                print ("\(self.score) points")
             }else {
                 print ("Timer done")
                 self.timer.invalidate()
@@ -42,11 +42,11 @@ class QuestionEngine: ObservableObject {
     }
     
     func gotCorrect() {
-//        self.timer.invalidate()
+        self.timer.invalidate()
         QuestionEngine.numberCorrect += 1
         print (QuestionEngine.numberCorrect)
         totalScore = totalScore + self.score
-        print (totalScore)
+        print ("Score : \(totalScore)")
     }
     
     
@@ -59,7 +59,7 @@ class QuestionEngine: ObservableObject {
         
         QuestionEngine.currentQuestion += 1
         
-        if QuestionEngine.currentQuestion<QuestionEngine.QuestionData.count{
+        if QuestionEngine.currentQuestion < self.totalQuestion(){ // QuestionEngine.QuestionData.count
             self.model = QuestionEngine.createQuestionEngine(i: QuestionEngine.currentQuestion)
         } else {
          self.timer.invalidate()
@@ -76,13 +76,10 @@ class QuestionEngine: ObservableObject {
     
     func allDone() -> Bool {
         
-        if currentQuestion () == totalQuestion() {
-            return true
-        }else{
-            return false
-            
-        }
+        return currentQuestion() == totalQuestion()
+      
     }
+    
     
     func resetQuizz(){
         self.timer.invalidate()
@@ -90,6 +87,7 @@ class QuestionEngine: ObservableObject {
         QuestionEngine.numberCorrect = 0
         totalScore = 0
     }
+    
     
     func invalidateTimer() {
         self.timer.invalidate()
