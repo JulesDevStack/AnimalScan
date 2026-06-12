@@ -96,6 +96,6 @@ struct FicheView: View {
 
 struct FicheViewPreview : PreviewProvider {
     static var previews: some View {
-        FicheView(animalSheet: animalSheets[1])
+        FicheView(animalSheet: animalSheets[3])
     }
 }

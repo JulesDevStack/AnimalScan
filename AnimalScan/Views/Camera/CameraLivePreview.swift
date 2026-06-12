@@ -78,7 +78,7 @@ struct CameraLivePreview: View {
                         
                         Spacer()
                         
-                        NavigationLink(destination: PictureConfirmationView(cameraManager: cameraManager)) {
+                        NavigationLink(destination: PictureConfirmationView()) {
     //                        Button {
     //                            cameraManager.capturePhoto()
     //                        } label: {
@@ -130,5 +130,5 @@ struct CameraLivePreview: View {
 
 
 #Preview {
-    PictureView()
+    CameraLivePreview()
 }
