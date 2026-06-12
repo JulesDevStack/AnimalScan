@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct FicheQuizView: View {
-    @ObservedObject var qe: QuestionEngine
+   
     var quizz: Quizz
     
     var body: some View {
@@ -131,7 +131,10 @@ struct FicheQuizView: View {
                             
                             NavigationLink{
 //                                CountdownView()
-                                InQuizzView(qe:qe)
+                                InQuizzView(question: QuestionModel(question: "Quelle est cette espèce ?", questionImage: "jaguar1",numberQuestion: 1, totalQuestion: 5, hint: "Si  l’on   regarde  attentivement  au niveau du pelage, on remarque une différence  propre à  cette  espèce.", choiceList: [QuestionChoice(choiceText: "Léopard"),
+                                                                                                                                                                                                                                                                                                            QuestionChoice(choiceText: "Guépard"),
+                                                                                                                                                                                                                                                                                                            QuestionChoice(choiceText: "Jaguar", isCorrect: true),
+                                                                                                                                                                                                                                                                                                            QuestionChoice(choiceText: "Couagar")]))
                             }label: {
                                 Text("COMMENCER")
                                     .padding()
@@ -165,6 +168,6 @@ struct FicheQuizView: View {
 }
 
 #Preview {
-    FicheQuizView(qe: QuestionEngine(), quizz: quizzs[0])
+    FicheQuizView(quizz: quizzs[0])
 }
 //qe: QuestionEngine(),
