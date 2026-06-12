@@ -271,6 +271,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = AnimalScan/Info.plist;
 				INFOPLIST_KEY_NSCameraUsageDescription = "Nous avons besoin de la caméra pour prendre des photos";
+				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "Pour sauvegarder vos photos";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -306,6 +307,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = AnimalScan/Info.plist;
 				INFOPLIST_KEY_NSCameraUsageDescription = "Nous avons besoin de la caméra pour prendre des photos";
+				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "Pour sauvegarder vos photos";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
