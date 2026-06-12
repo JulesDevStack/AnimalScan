@@ -104,8 +104,7 @@ struct HubQuizView: View {
                             
                             ScrollView{
                                 
-                                ForEach(quizzs){quizz in
-                                    //                            HubQuizzRowView(imageName: quizz.image, titleName: quizz.name, savingName: quizz.saving, symbolName: quizz.symbol, levelName: quizz.level, coloriconName: quizz.coloricon)
+                                ForEach(quizzs) { quizz in
                                     HubQuizzRowView(quizz: quizz)
                                 }
                                 

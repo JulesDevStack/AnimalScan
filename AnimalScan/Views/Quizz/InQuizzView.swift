@@ -8,6 +8,9 @@
 import SwiftUI
 import Combine
 
+
+
+
 struct InQuizzView: View {
     
     var question: QuestionModel
@@ -35,26 +38,13 @@ struct InQuizzView: View {
                             .aspectRatio(contentMode: .fill)
                             .frame(width: 450, height: 600)
                             .clipShape(RoundedRectangle(cornerRadius: 0))
-                        //
-                        //                        ZStack{
-                        //                            RoundedRectangle(cornerRadius: 32)
-                        //                                .frame(width: 360,height: 40)
-                        //                                .foregroundStyle(.backgroundCard)
-                        //                            UnevenRoundedRectangle(topLeadingRadius: 32, bottomLeadingRadius: 32, bottomTrailingRadius: 0, topTrailingRadius: 0)
-                        //                                .frame(width: 340,height: 25)
-                        //                                .foregroundStyle(LinearGradient(gradient: Gradient(colors: [Color.accent, Color.background3,Color.background2, Color.background1]), startPoint: .topLeading, endPoint: .bottomTrailing))
-                        //                        }
-                        //                        .padding(.bottom,380)
                         
-                        // Eléments sur la photo :
                         ZStack{
-                            
                             Circle()
                                 .stroke(lineWidth: 4)
                                 .fill(LinearGradient(gradient: Gradient(colors: [Color.backgroundCard,Color.accent]), startPoint: .bottomLeading, endPoint: .topLeading))
                                 .frame(width: 80)
                                 .glassEffect(.clear)
-                            
                             
                             Text("\(timeRemain)")
                                 .foregroundStyle(.backgroundCard)
@@ -62,21 +52,15 @@ struct InQuizzView: View {
                                 .fontWeight(.black)
                                 .fontDesign(.rounded)
                                 .onReceive(timer) { _ in
-                                    
                                     DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
                                         if timeRemain > 0 {
-                                            
                                             timeRemain -= 1
                                         }
                                     }
-                                    if timeRemain == 0 {
-                                        
-                                        
-                                        
-                                    }
+                                    if timeRemain == 0 {}
                                 }
                         }
-                        .padding(.bottom,340)
+                        .padding(.bottom, 340)
                         
                         ZStack{
                             
@@ -99,16 +83,11 @@ struct InQuizzView: View {
                                     .fontWeight(.black)
                                     .padding(.leading, 15)
                             }
-                            //
-                            
                         }
                         .padding(.leading, 280)
                         .padding(.bottom,340)
                         
                         HStack{
-                            
-                            
-                            
                             Button{
                                 if isPushed{
                                     showHint = true
@@ -120,8 +99,7 @@ struct InQuizzView: View {
                                     }
                                 }
                                 isPushed.toggle()
-                            }label: {
-                                
+                            } label: {
                                 ZStack{
                                     Circle()
                                         .stroke(lineWidth: 4)
@@ -135,9 +113,6 @@ struct InQuizzView: View {
                                 }
                                 .glassEffect(.clear)
                             }
-                            
-                            //                            .padding(.bottom,30)
-                            
                         }
                         .padding(.bottom,180)
                         .padding(.leading,310)
@@ -167,7 +142,7 @@ struct InQuizzView: View {
                                     }
                                     
                                     
-                                    Text("")
+                                    Text(question.hint)
                                         .font(.footnote)
                                         .foregroundStyle(.accent)
                                         .frame(width: 220,height: 90)
@@ -218,7 +193,7 @@ struct InQuizzView: View {
                                 .foregroundStyle(.accent)
                             
                             
-                            Text("\(question.numberQuestion)/ \(question.totalQuestion)")
+                            Text("\(question.numberQuestion) / \(question.totalQuestion)")
                                 .font(.title3)
                                 .foregroundStyle(.backgroundCard)
                                 .fontWeight(.semibold)
@@ -238,94 +213,41 @@ struct InQuizzView: View {
                                 .kerning(1)
                                 .padding(.bottom,20)
                             
-                            LazyVGrid(columns: columns) {
-                                
-                                ////
-                                //
-                                HStack{
-                                    ZStack{
-                                        RoundedRectangle(cornerRadius: 32)
-                                            .foregroundStyle(LinearGradient(gradient: Gradient(colors: [Color.accent,Color.background3,Color.background1]), startPoint: .top, endPoint: .bottom))
-                                            .frame(width: 180,height: 100)
-                                            .shadow(radius: 4, x: 0, y: 1)
-                                        Text("fnejfnz")
-                                            .font(.title2)
-                                            .foregroundStyle(.backgroundCard)
-                                            .fontWeight(.semibold)
-                                            .kerning(1)
-                                    }
-                                    ZStack{
-                                        RoundedRectangle(cornerRadius: 32)
-                                            .foregroundStyle(LinearGradient(gradient: Gradient(colors: [Color.accent,Color.background3,Color.background1]), startPoint: .top, endPoint: .bottom))
-                                            .frame(width: 180,height: 100)
-                                            .shadow(radius: 4, x: 0, y: 1)
-                                        Text("cnskc,n")
-                                            .font(.title2)
-                                            .foregroundStyle(.backgroundCard)
-                                            .fontWeight(.semibold)
-                                            .kerning(1)
-                                    }
+                            VStack {
+                                HStack {
+                                    AnswerCard(answerLabel: question.choiceList[0])
+                                    AnswerCard(answerLabel: question.choiceList[1])
                                 }
-                                
+                                HStack {
+                                    AnswerCard(answerLabel: question.choiceList[2])
+                                    AnswerCard(answerLabel: question.choiceList[3])
+                                }
                             }
                             
-                            
-                            
-                            .navigationBarBackButtonHidden()
                         }
-                        //                                ZStack{
-                        //                                    RoundedRectangle(cornerRadius: 32)
-                        //                                        .foregroundStyle(LinearGradient(gradient: Gradient(colors: [Color.accent,Color.background3,Color.background1]), startPoint: .top, endPoint: .bottom))
-                        //                                        .frame(width: 190,height: 100)
-                        //                                        .shadow(radius: 4, x: 0, y: 1)
-                        //                                    Text("Guépard")
-                        //                                        .font(.title)
-                        //                                        .foregroundStyle(.backgroundCard)
-                        //                                        .fontWeight(.semibold)
-                        //                                        .kerning(1)
-                        //                                }
-                        //                            }
-                        //                            HStack{
-                        //                                ZStack{
-                        //                                    RoundedRectangle(cornerRadius: 32)
-                        //                                        .foregroundStyle(LinearGradient(gradient: Gradient(colors: [Color.accent,Color.background3,Color.background1]), startPoint: .top, endPoint: .bottom))
-                        //                                        .frame(width: 190,height: 100)
-                        //                                        .shadow(radius: 4, x: 0, y: 1)
-                        //                                    Text("Jaguar")
-                        //                                        .font(.title)
-                        //                                        .foregroundStyle(.backgroundCard)
-                        //                                        .fontWeight(.semibold)
-                        //                                        .kerning(1)
-                        //                                }
-                        //                                ZStack{
-                        //                                    RoundedRectangle(cornerRadius: 32)
-                        //                                        .foregroundStyle(LinearGradient(gradient: Gradient(colors: [Color.accent,Color.background3,Color.background1]), startPoint: .top, endPoint: .bottom))
-                        //                                        .frame(width: 190,height: 100)
-                        //                                        .shadow(radius: 4, x: 0, y: 1)
-                        //                                    Text("Couguar")
-                        //                                        .font(.title)
-                        //                                        .foregroundStyle(.backgroundCard)
-                        //                                        .fontWeight(.semibold)
-                        //                                        .kerning(1)
-                        //
-                        //                                }
                     }
-                    
-                    
                 }
-                
-                
-                
             }
         }
         .onAppear()
-        
     }
-    
-    
 }
 
 
 #Preview {
-    InQuizzView(question: QuestionModel(question: "Quelle est cette espèce ?", questionImage: "jaguar1",numberQuestion: 1, totalQuestion: 5, hint: "Si  l’on   regarde  attentivement  au niveau du pelage, on remarque une différence  propre à  cette  espèce.", choiceList: [QuestionChoice(choiceText: "Léopard"),QuestionChoice(choiceText: "Guépard"),QuestionChoice(choiceText: "Jaguar", isCorrect: true),QuestionChoice(choiceText: "Couagar")]))
+    InQuizzView(
+        question: QuestionModel(
+            question: "Quelle est cette espèce ?",
+            questionImage: "jaguar1",
+            numberQuestion: 1,
+            totalQuestion: 5,
+            hint: "Si  l’on   regarde  attentivement  au niveau du pelage, on remarque une différence  propre à  cette  espèce.",
+            choiceList: [
+                QuestionChoice(choiceText: "Léopard"),
+                QuestionChoice(choiceText: "Guépard"),
+                QuestionChoice(choiceText: "Jaguar", isCorrect: true),
+                QuestionChoice(choiceText: "Couagar")
+            ]
+        )
+    )
 }
