@@ -227,6 +227,7 @@ struct InQuizzView: View {
                         }
                     }
                 }
+                .padding(.bottom, 110)
             }
         }
         .onAppear()

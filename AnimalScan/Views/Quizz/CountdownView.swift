@@ -69,19 +69,7 @@ struct CountdownView: View {
                             }
                         }
                 }.navigationBarBackButtonHidden()
-            }
-            //            Text(
-            //                timerInterval: Date.now...Date(timeInterval: 3, since: .now),
-            //                pauseTime: nil,
-            //                countsDown: true,
-            //                showsHours: false
-            //                    )
-            //            .font(.largeTitle)
-            //            .fontWeight(.heavy)
-            //            .foregroundStyle(.accent)
-            //            .kerning(3)
-            
-            
+            }          
         
     }
 }

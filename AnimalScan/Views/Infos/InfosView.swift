@@ -17,7 +17,7 @@ struct InfosView: View {
             ScrollView(.vertical, showsIndicators: false) {
                 VStack(alignment: .leading, spacing: 12) {
                     Text("Informations")
-                        .font(.system(size: 50))
+                        .font(.system(size: 40))
                         .foregroundStyle(LinearGradient(gradient: Gradient(colors: [Color.foreground1,Color.accent,Color.background3,Color.background2]), startPoint: .top, endPoint: .bottom))
                         .fontWeight(.heavy)
                         .padding()
