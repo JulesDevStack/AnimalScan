@@ -9,6 +9,7 @@ import SwiftUI
 
 struct PictureConfirmationView: View {
     var animalSheet : AnimalSheet = animalSheets[3]
+    
     var body: some View {
             ZStack {
                 LinearGradient(
@@ -22,35 +23,34 @@ struct PictureConfirmationView: View {
                 )
                 .ignoresSafeArea()
 
-                VStack {
+                VStack(alignment: .leading, spacing: 16) {
                     Image("profil")
                         .resizable()
                         .scaledToFit()
                         .frame(maxWidth: .infinity)
                         .cornerRadius(20)
-
-                    Spacer()
                     
-                    Text("Animal détecté : \(animalSheet.name)")
-                        .foregroundStyle(.foreground)
-                        .font(.system(size: 22, weight: .semibold))
-                        .padding()
-                        .frame(maxWidth: .infinity, alignment: .trailing)
-                        .padding()
-                    
-                    Spacer()
-                    
-                    NavigationLink {
-                        FicheView(animalSheet: animalSheets[3])
-                    } label: {
-                        Text("Confirmer")
-                            .foregroundStyle(.foreground1)
-                            .font(.system(size: 24, weight: .medium))
-                            .padding()
-                            .background(
-                                RoundedRectangle(cornerRadius: 18)
-                                    .foregroundStyle(.backgroundCard)
-                            )
+                    HStack {
+                        VStack(alignment: .leading, spacing: 12) {
+                            Text("Animal détecté")
+                                .foregroundStyle(.foreground1)
+                                .font(.system(size: 18, weight: .semibold))
+                            Text("\(animalSheet.name)")
+                                .font(.system(size: 24, weight: .semibold))
+                        }
+                        Spacer()
+                        NavigationLink {
+                            DetailedFicheView(animalSheet: animalSheets[3])
+                        } label: {
+                            Text("Confirmer")
+                                .foregroundStyle(.foreground1)
+                                .font(.system(size: 24, weight: .medium))
+                                .padding()
+                                .background(
+                                    RoundedRectangle(cornerRadius: 18)
+                                        .foregroundStyle(.backgroundCard)
+                                )
+                        }
                     }
                 }
                 .padding()

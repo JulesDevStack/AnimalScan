@@ -112,13 +112,6 @@ struct CameraLivePreview: View {
                     .padding()
                     .frame(maxWidth: .infinity)
                 }
-                .sheet(item: $cameraManager.capturedImage) {
-                    item in
-                    
-                    PhotoPreviewView(item: item, onDismiss: {
-                        cameraManager.capturedImage = nil
-                    })
-                }
             }
             .onAppear() {
                 cameraManager.checkAuthorization()
