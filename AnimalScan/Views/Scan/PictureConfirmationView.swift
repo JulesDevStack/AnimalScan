@@ -8,7 +8,11 @@
 import SwiftUI
 
 struct PictureConfirmationView: View {
-    var cameraManager: CameraManager
+    @EnvironmentObject var cameraManager: CameraManager
+    
+    var capturedImage: IdentifiableImage? {
+        cameraManager.capturedImage
+    }
     
     var body: some View {
         ZStack {
@@ -39,17 +43,18 @@ struct PictureConfirmationView: View {
 
                 Text("Valider la photo ?")
                     .font(.largeTitle)
-
-                Image(.dragon)
-                    .resizable()
-                    .scaledToFit()
-                    .frame(maxWidth: 250, maxHeight: 320)
-                    .cornerRadius(20)
-
+                
+                if capturedImage != nil {
+                    Image(uiImage: capturedImage!.image)
+                        .resizable()
+                        .scaledToFit()
+                        .frame(maxWidth: 250, maxHeight: 320)
+                        .cornerRadius(20)
+                }
+                
                 HStack(spacing: 25) {
-
                     Button {
-                        
+
                     } label: {
                         Text("Annuler")
                             .foregroundStyle(.foreground1)
@@ -87,5 +92,5 @@ struct PictureConfirmationView: View {
 }
 
 #Preview {
-    CameraLivePreview()
+    PictureConfirmationView().environmentObject(CameraManager())
 }

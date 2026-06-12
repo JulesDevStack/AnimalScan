@@ -18,6 +18,7 @@ class CameraManager: NSObject, ObservableObject, AVCapturePhotoCaptureDelegate {
     // AVFoundation components
     
     let session = AVCaptureSession()
+    
     private let photoOutput = AVCapturePhotoOutput()
     private let videoOutput = AVCaptureMovieFileOutput()
     private var currentInput: AVCaptureDeviceInput?
