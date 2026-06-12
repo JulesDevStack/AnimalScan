@@ -24,38 +24,16 @@ struct PictureView: View {
 
                 VStack(spacing: 25) {
                     Text("Prendre une photo ?")
+                    
                         .font(.largeTitle)
 
-                    Image(.dragon)
-                        .resizable()
-                        .scaledToFill()
-                        .frame(maxWidth: 350, maxHeight: 450)
-                        .cornerRadius(20)
+                    CameraLivePreview()
+//                    Image(.dragon)
+//                        .resizable()
+//                        .scaledToFill()
+//                        .frame(maxWidth: 350, maxHeight: 450)
+//                        .cornerRadius(20)
 
-                    HStack(spacing: 25) {
-                        NavigationLink(destination: ProfilView()) {
-                            Text("Profil")
-                                .foregroundStyle(.foreground1)
-                                .font(.system(size: 24, weight: .medium))
-                                .frame(width: 140, height: 75)
-                                .background(
-                                    RoundedRectangle(cornerRadius: 18)
-                                        .foregroundStyle(.backgroundCard)
-                                )
-                        }
-                        Button {
-                            
-                        } label: {
-                            Text("Galerie")
-                                .foregroundStyle(.foreground1)
-                                .font(.system(size: 24, weight: .medium))
-                                .frame(width: 140, height: 75)
-                                .background(
-                                    RoundedRectangle(cornerRadius: 18)
-                                        .foregroundStyle(.backgroundCard)
-                                )
-                        }
-                    }
                 }
                 
             }
