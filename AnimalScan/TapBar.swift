@@ -11,7 +11,7 @@ struct TapBar: View {
     var body: some View {
         TabView {
             Group {
-                PictureView()
+                CameraLivePreview()
                     .tabItem {
                         Label("Scanner", systemImage: "camera")
                     }

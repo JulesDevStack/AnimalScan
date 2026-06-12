@@ -11,96 +11,119 @@ import AVKit
 
 struct CameraLivePreview: View {
     @StateObject private var cameraManager = CameraManager()
+    
     var body: some View {
-        ZStack {
-            
-            if cameraManager.authorizationStatus == .authorized {
-                CameraPreview(session: cameraManager.session)
-                    .ignoresSafeArea()
-            }else {
-                VStack {
-                    Image(systemName: "camera.fill")
-                        .font(.largeTitle)
-                        .foregroundStyle(.gray)
-                    Text("Camera acess Required")
-                        .font(.largeTitle)
-                        .foregroundStyle(.gray)
-                    
-                    if cameraManager.authorizationStatus == .denied {
-                        Text("I beg you enable the camera in settings")
+        NavigationStack {
+            ZStack {
+                LinearGradient(
+                    gradient: Gradient(colors: [
+                        Color.background1,
+                        Color.background2,
+                        Color.background3
+                    ]),
+                    startPoint: .topLeading,
+                    endPoint: .bottom
+                )
+                .ignoresSafeArea()
+                
+                if cameraManager.authorizationStatus == .authorized {
+                    CameraPreview(session: cameraManager.session)
+                        .ignoresSafeArea()
+                }else {
+                    VStack {
+                        Image(systemName: "camera.fill")
+                            .font(.largeTitle)
+                            .foregroundStyle(.gray)
+                        Text("Camera acess Required")
+                            .font(.largeTitle)
+                            .foregroundStyle(.gray)
                         
-                        Button("Open Settings") {
-                            if let settingsURL = URL(string: UIApplication.openSettingsURLString){
-                                UIApplication.shared.open(settingsURL)
+                        if cameraManager.authorizationStatus == .denied {
+                            Text("I beg you enable the camera in settings")
+                            
+                            Button("Open Settings") {
+                                if let settingsURL = URL(string: UIApplication.openSettingsURLString){
+                                    UIApplication.shared.open(settingsURL)
+                                }
                             }
                         }
                     }
                 }
-            }
-            
-            VStack {
-                Spacer()
-                HStack {
-                    Button {
-                        
-                    } label: {
-                        Text("Galerie")
-                            .foregroundStyle(.foreground1)
-                            .font(.system(size: 24, weight: .medium))
-                            .padding()
-                            .background(
-                                RoundedRectangle(cornerRadius: 18)
-                                    .foregroundStyle(.backgroundCard)
-                            )
-                    }
-                    
-                    Spacer()
 
-                    Button {
-                        cameraManager.capturePhoto()
-                    } label: {
-                        Circle()
-                            .strokeBorder(.white, lineWidth: 3)
-                            .frame(width: 70, height: 70)
-                            .overlay {
-                                Circle()
-                                    .fill(.white)
-                                    .frame(width: 60, height: 60)
-                            }
-                    }
+                VStack(spacing: 0) {
+                    Text("Anima Scan")
+                        .font(.system(size: 50))
+                        .foregroundStyle(LinearGradient(gradient: Gradient(colors: [Color.foreground1,Color.accent,Color.background3,Color.background2]), startPoint: .top, endPoint: .bottom))
+                        .fontWeight(.heavy)
+                        .fontDesign(.serif)
+                        .frame(maxWidth: .infinity, alignment: .center)
+                        .padding(.bottom, 6)
+                        .background(.ultraThinMaterial.opacity(0.65))
                     
                     Spacer()
                     
-                    Button {
+                    HStack(spacing: 24) {
+                        Button {
+                            
+                        } label: {
+                            Text(Image(systemName: "photo.stack"))
+                                .foregroundStyle(.foreground1)
+                                .font(.system(size: 24, weight: .medium))
+                                .padding()
+                                .background(
+                                    RoundedRectangle(cornerRadius: 12)
+                                        .foregroundStyle(.backgroundCard)
+                                )
+                        }
                         
-                    } label: {
-                        Text("Historique")
-                            .foregroundStyle(.foreground1)
-                            .font(.system(size: 24, weight: .medium))
-                            .padding()
-                            .background(
-                                RoundedRectangle(cornerRadius: 18)
-                                    .foregroundStyle(.backgroundCard)
-                            )
+                        Spacer()
+                        
+                        NavigationLink(destination: PictureConfirmationView(cameraManager: cameraManager)) {
+    //                        Button {
+    //                            cameraManager.capturePhoto()
+    //                        } label: {
+                                Circle()
+                                    .strokeBorder(.white, lineWidth: 3)
+                                    .frame(width: 70, height: 70)
+                                    .overlay {
+                                        Circle()
+                                            .fill(.white)
+                                            .frame(width: 60, height: 60)
+                                    }
+    //                        }
+                        }
+                        
+                        Spacer()
+                        
+                        Button {
+                            
+                        } label: {
+                            Text(Image(systemName: "clock.arrow.circlepath"))
+                                .foregroundStyle(.foreground1)
+                                .font(.system(size: 24, weight: .medium))
+                                .padding()
+                                .background(
+                                    RoundedRectangle(cornerRadius: 12)
+                                        .foregroundStyle(.backgroundCard)
+                                )
+                        }
+                        
                     }
-                    
+                    .padding()
+                    .frame(maxWidth: .infinity)
                 }
-                .frame(maxWidth: .infinity)
-                
+                .sheet(item: $cameraManager.capturedImage) {
+                    item in
+                    
+                    PhotoPreviewView(item: item, onDismiss: {
+                        cameraManager.capturedImage = nil
+                    })
+                }
             }
-            .sheet(item: $cameraManager.capturedImage) {
-                item in
-                
-                PhotoPreviewView(item: item, onDismiss: {
-                    cameraManager.capturedImage = nil
-                })
+            .onAppear() {
+                cameraManager.checkAuthorization()
             }
-            
         }
-        .onAppear() {
-            cameraManager.checkAuthorization()
-        }
-        .padding()
     }
 }
 

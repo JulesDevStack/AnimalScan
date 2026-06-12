@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct PictureConfirmationView: View {
+    var cameraManager: CameraManager
+    
     var body: some View {
         ZStack {
             LinearGradient(
@@ -85,5 +87,5 @@ struct PictureConfirmationView: View {
 }
 
 #Preview {
-    PictureConfirmationView()
+    CameraLivePreview()
 }
