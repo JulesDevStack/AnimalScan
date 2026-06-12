@@ -28,11 +28,13 @@ struct SpecieCollecCard: View {
                     .foregroundColor(.black)
                     .frame(maxWidth: .infinity, alignment: .leading)
                 
-                Text("14 espèces enregistrées")
-                    .font(.subheadline)
-                    .fontWeight(.regular)
-                    .foregroundColor(.black.opacity(0.7))
-                    .frame(maxWidth: .infinity, alignment: .leading)
+                if Bool.random() {
+                    Text("\(Int.random(in: 1...6)) espèces enregistrées")
+                        .font(.subheadline)
+                        .fontWeight(.regular)
+                        .foregroundColor(.black.opacity(0.7))
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                }
             }
             .frame(maxWidth: .infinity, alignment: .leading)
             .padding()
@@ -55,6 +57,7 @@ struct SpeciesListView: View {
     var speciesList : [AnimalSpecie] = animalSpecies
     
     @State var searchValue : String = ""
+    @State var selfUser: User = User(username: "Jules", score: 2000, weeklyScore: 2000, avatar: "avatar")
        
     
     var body: some View {
