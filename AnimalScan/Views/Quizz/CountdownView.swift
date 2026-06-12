@@ -39,7 +39,7 @@ struct CountdownView: View {
                         }
                     }
                 NavigationLink{
-                    InQuizzView(qe: QuestionEngine())
+//                    InQuizzView(qe: QuestionEngine())
                 }label: {
                     
                     Text("\(timeRemain)")
@@ -62,31 +62,29 @@ struct CountdownView: View {
                                     timeRemain -= 1
                                 }
                                 if timeRemain == 0 {
-                                    
-                                    timer.upstream.connect().cancel()
-//                                    isNavigate = true
+                                   
+                               
+                                    }
                                 }
                             }
                         }
-                }
+                }.navigationBarBackButtonHidden()
             }
-        }.navigationBarBackButtonHidden()
+            //            Text(
+            //                timerInterval: Date.now...Date(timeInterval: 3, since: .now),
+            //                pauseTime: nil,
+            //                countsDown: true,
+            //                showsHours: false
+            //                    )
+            //            .font(.largeTitle)
+            //            .fontWeight(.heavy)
+            //            .foregroundStyle(.accent)
+            //            .kerning(3)
+            
+            
+        
     }
-    //            Text(
-    //                timerInterval: Date.now...Date(timeInterval: 3, since: .now),
-    //                pauseTime: nil,
-    //                countsDown: true,
-    //                showsHours: false
-    //                    )
-    //            .font(.largeTitle)
-    //            .fontWeight(.heavy)
-    //            .foregroundStyle(.accent)
-    //            .kerning(3)
-    
-    
 }
-
-
 
 #Preview {
     CountdownView()

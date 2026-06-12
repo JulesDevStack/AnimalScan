@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct WinView: View {
-    
+
     
     var body: some View {
         NavigationStack{
@@ -16,17 +16,34 @@ struct WinView: View {
                 LinearGradient(gradient: Gradient(colors: [Color.background1, Color.background2, Color.background3]), startPoint: .topLeading, endPoint: .bottom)
                     .ignoresSafeArea()
                 
-                VStack{
+                VStack(alignment: .center){
+                    
                     Text("VICTOIRE")
-                        .padding(.top)
-                        .font(.system(size: 70))
+                        .padding(.top,90)
+                        .font(.system(size: 60))
                         .foregroundStyle(LinearGradient(gradient: Gradient(colors: [Color.foreground1,Color.accent,Color.background3,Color.background2]), startPoint: .top, endPoint: .bottom))
                         .fontWeight(.heavy)
                         .fontDesign(.serif)
-                    
-                    // Fond carte + image
+                        
+// Fond carte + image
                     
                     ZStack{
+                          
+                        UnevenRoundedRectangle(topLeadingRadius: 0,bottomLeadingRadius: 500,bottomTrailingRadius: 0,topTrailingRadius: 500)
+                            .frame(width: 445, height: 435)
+                            .foregroundStyle(.backgroundCard)
+                        UnevenRoundedRectangle(topLeadingRadius: 0,bottomLeadingRadius: 500,bottomTrailingRadius: 0,topTrailingRadius: 500)
+                            .frame(width: 405, height: 395)
+                            .foregroundStyle(.background3)
+                        UnevenRoundedRectangle(topLeadingRadius: 0,bottomLeadingRadius: 500,bottomTrailingRadius: 0,topTrailingRadius: 500)
+                            .frame(width: 420, height: 350)
+                            .foregroundStyle(.accent)
+//                        Mask :
+                        UnevenRoundedRectangle(topLeadingRadius: 0,bottomLeadingRadius: 300,bottomTrailingRadius: 0,topTrailingRadius: 300)
+                            .frame(width: 460, height: 320)
+                            .foregroundStyle(.background2)
+                       
+                        
                         RoundedRectangle(cornerRadius: 32)
                             .frame(width: 338,height: 416)
                             .padding(.bottom)
@@ -62,7 +79,7 @@ struct WinView: View {
                                 
                                 Image("card1")
                                     .resizable()
-                                    .frame(width: 100, height: 105)
+                                    .frame(width: 105, height: 105)
                                 Text("Statut")
                                     .foregroundStyle(.backgroundCard)
                                     .fontDesign(.serif)
@@ -86,7 +103,7 @@ struct WinView: View {
                             }
                             
                             .padding(.top,185)
-                            .padding(.trailing,40)
+                            .padding(.trailing,38)
                             
                             VStack(alignment: .leading){
                                 Text("JAGUAR")
@@ -114,7 +131,7 @@ struct WinView: View {
                                         .fontWeight(.semibold)
                                         .font(.headline)
                                         .padding(2)
-                                    Text("Félidés")
+                                    Text(" Félidés")
                                         .foregroundStyle(.backgroundCard)
                                         .fontDesign(.rounded)
                                         .fontWeight(.bold)
@@ -127,7 +144,7 @@ struct WinView: View {
                                         .fontWeight(.semibold)
                                         .font(.headline)
                                         .padding(2)
-                                    Text("70 à 140 kg")
+                                    Text(" 70 à 140 kg")
                                         .foregroundStyle(.backgroundCard)
                                         .fontDesign(.rounded)
                                         .fontWeight(.bold)
@@ -148,8 +165,9 @@ struct WinView: View {
                                         .font(.footnote)
                                 }
                             }
-                            .padding(.top,195)
+                            .padding(.top,190)
                         }
+                        
                     }
                     
                     // Bas écran :
@@ -189,7 +207,7 @@ struct WinView: View {
                                     .foregroundStyle(.backgroundCard)
                                     .padding(.trailing,15)
                                 
-                                Text("10/10")
+                                Text("")
                                     .font(.system(size: 23))
                                     .foregroundStyle(.backgroundCard)
                                     .fontWeight(.black)
@@ -204,9 +222,9 @@ struct WinView: View {
                                 Image(systemName: "p.circle.fill")
                                     .font(.system(size: 25))
                                     .foregroundStyle(.backgroundCard)
-                                    .padding(.leading,90)
+                                    .padding(.leading,80)
                                 
-                                Text("98 points")
+                                Text("0 points")
                                     .font(.system(size: 23))
                                     .foregroundStyle(.backgroundCard)
                                     .fontWeight(.black)
@@ -228,7 +246,7 @@ struct WinView: View {
                                             .foregroundStyle(.backgroundCard)
                                         
                                     }
-                                    .padding(.trailing,15)
+                                    .padding(.trailing,9)
                                     .padding(.bottom,40)
                                 }
                             }
@@ -279,9 +297,9 @@ struct WinView: View {
                             
                         }
                         .padding(.top,110)
-                    }
+                    }/*.padding(.bottom,160)*/
                 }
-                .padding(.top,60)
+//                .padding(.top,90)
                 
                 //       Confetti pattern
                 //            Rectangle()
@@ -290,6 +308,7 @@ struct WinView: View {
                 //                .rotationEffect(.degrees(40))
             }
         }
+        .navigationBarBackButtonHidden()
     }
 }
 
