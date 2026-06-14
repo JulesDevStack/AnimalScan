@@ -37,16 +37,25 @@ struct AnimalCollecCard: View {
                         .fontWeight(.medium)
                         .foregroundColor(.black)
                         .frame(maxWidth: .infinity, alignment: .leading)
+                    
+                    if Bool.random(){
+                        Text("Scanné le \r\(animal.discoverDate)")
+                            .font(.system(size: 12, weight: .regular))
+                            .foregroundColor(.black.opacity(0.7))
+                            .multilineTextAlignment(.leading)
+                            .frame(maxWidth: .infinity, alignment: .leading)
+                    }
                 }
                 Spacer()
                 Image(systemName: "chevron.right")
+                    .font(.title3)
                     .fontWeight(.semibold)
             }
             .padding()
             
         }
         .padding(5)
-        .frame(maxWidth: .infinity)
+        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
         .background(.backgroundCard)
         .cornerRadius(20)
     }
@@ -98,7 +107,7 @@ struct AnimalsListView: View {
                     .padding(.horizontal)
                     
                     ScrollView {
-                        LazyVGrid(columns: columns) {
+                        LazyVGrid(columns: columns, alignment: .center) {
                             ForEach(specie.animalssheets){ animal in
                                 NavigationLink{
                                     DetailedFicheView(animalSheet: animal)
