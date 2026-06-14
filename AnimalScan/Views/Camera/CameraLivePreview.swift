@@ -53,12 +53,12 @@ struct CameraLivePreview: View {
                 VStack(spacing: 0) {
                     Text("Anima Scan")
                         .font(.system(size: 50))
-                        .foregroundStyle(LinearGradient(gradient: Gradient(colors: [Color.foreground1,Color.accent,Color.background3,Color.background2]), startPoint: .top, endPoint: .bottom))
+                        .foregroundStyle(.background1)
                         .fontWeight(.heavy)
                         .fontDesign(.serif)
                         .frame(maxWidth: .infinity, alignment: .center)
                         .padding(.bottom, 6)
-                        .background(.ultraThinMaterial.opacity(0.65))
+                        .background(.foreground1.mix(with: .black, by: 0.6).opacity(0.65))
                     
                     Spacer()
                     

@@ -32,10 +32,8 @@ struct TapBar: View {
                         Label("Infos", systemImage: "phone")
                     }
             }
-//            .toolbarColorScheme(.dark, for: .tabBar)
-//            .toolbarBackground(.visible, for: .tabBar)
-            
         }
+        .preferredColorScheme(.light)
     }
 }
 
