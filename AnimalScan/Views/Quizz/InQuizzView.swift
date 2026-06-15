@@ -182,7 +182,7 @@ struct InQuizzView: View {
                         
                         RoundedRectangle(cornerRadius: 70)
                             .foregroundStyle(.backgroundCard)
-                            .frame(width: 410, height: 370)
+                            .frame(width: 420, height: 370)
                         
                         ZStack{
                             UnevenRoundedRectangle(topLeadingRadius: 42, bottomLeadingRadius: 0, bottomTrailingRadius: 0, topTrailingRadius: 42)
@@ -227,7 +227,7 @@ struct InQuizzView: View {
                         }
                     }
                 }
-                .padding(.bottom, 110)
+                
             }
         }
         .onAppear()
