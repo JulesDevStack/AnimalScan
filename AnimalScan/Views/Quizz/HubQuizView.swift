@@ -60,17 +60,28 @@ struct HubQuizView: View {
                     }
                     
                     HStack() {
-                        Button(action: {
-                            //
-                        }) {
-                            Image(systemName: "slider.horizontal.3")
-                                .padding(6)
-                                .font(.title2)
-                                .foregroundStyle(.accent)
-                            
+                        NavigationLink{
+                            ProfilView()
+                        }label:{
+                            ZStack{
+                                UnevenRoundedRectangle(topLeadingRadius: 32, bottomLeadingRadius: 32, bottomTrailingRadius: 32, topTrailingRadius: 32)
+                                    .frame(width: 50, height: 50)
+                                    .foregroundStyle(.accent.opacity(0.8))
+                                UnevenRoundedRectangle(topLeadingRadius: 32, bottomLeadingRadius: 32, bottomTrailingRadius: 32, topTrailingRadius: 32)
+                                    .frame(width: 40, height: 40)
+                                    .foregroundStyle(.backgroundCard)
+                                
+                                
+                                HStack{
+                                    Image(systemName: "person.fill")
+                                        .foregroundStyle(.accent)
+                                    
+                                    
+                                }
+                            }
+                            .glassEffect(.clear)
                         }
-                        .glassEffect(.clear)
-                        .padding(.leading,40)
+                        
                         Spacer()
                         
                         NavigationLink{
@@ -93,9 +104,10 @@ struct HubQuizView: View {
                                 }
                             }
                             .glassEffect(.clear)
-                            .padding(.trailing,40)
                         }
                     }
+                    .padding(.horizontal, 32)
+                    .padding(.vertical, 4)
                     
                     
                     ScrollView{
