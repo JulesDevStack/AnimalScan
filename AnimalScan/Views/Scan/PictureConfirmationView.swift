@@ -8,7 +8,14 @@
 import SwiftUI
 
 struct PictureConfirmationView: View {
-    var animalSheet : AnimalSheet = animalSheets[3]
+    @EnvironmentObject var cameraManager: CameraManager
+    
+    var animalSheet : AnimalSheet = animalSheets[Int.random(in: 0..<animalSheets.count)]
+    
+    var capturedImage: IdentifiableImage? {
+        cameraManager.capturedImage
+    }
+    
     
     var body: some View {
             ZStack {
@@ -24,11 +31,13 @@ struct PictureConfirmationView: View {
                 .ignoresSafeArea()
 
                 VStack(alignment: .leading, spacing: 16) {
-                    Image("profil")
-                        .resizable()
-                        .scaledToFit()
-                        .frame(maxWidth: .infinity)
-                        .cornerRadius(20)
+                    if cameraManager.capturedImage?.id != nil {
+                        Image(uiImage: capturedImage!.image)
+                            .resizable()
+                            .scaledToFit()
+                            .frame(maxWidth: .infinity)
+                            .cornerRadius(20)
+                    }
                     
                     HStack {
                         VStack(alignment: .leading, spacing: 12) {
@@ -40,7 +49,7 @@ struct PictureConfirmationView: View {
                         }
                         Spacer()
                         NavigationLink {
-                            DetailedFicheView(animalSheet: animalSheets[3])
+                            DetailedFicheView(animalSheet: animalSheet)
                         } label: {
                             Text("Confirmer")
                                 .foregroundStyle(.foreground1)
@@ -60,8 +69,5 @@ struct PictureConfirmationView: View {
 }
 
 #Preview {
-    NavigationStack{
-        PictureConfirmationView()
-
-    }
+    PictureConfirmationView().environmentObject(CameraManager())
 }

@@ -11,6 +11,7 @@ import AVKit
 
 struct CameraLivePreview: View {
     @StateObject private var cameraManager = CameraManager()
+    @State private var nextPage: Bool = false
     
     var body: some View {
         NavigationStack {
@@ -78,19 +79,17 @@ struct CameraLivePreview: View {
                         
                         Spacer()
                         
-                        NavigationLink(destination: PictureConfirmationView()) {
-    //                        Button {
-    //                            cameraManager.capturePhoto()
-    //                        } label: {
-                                Circle()
-                                    .strokeBorder(.white, lineWidth: 3)
-                                    .frame(width: 70, height: 70)
-                                    .overlay {
-                                        Circle()
-                                            .fill(.white)
-                                            .frame(width: 60, height: 60)
-                                    }
-    //                        }
+                        Button {
+                            cameraManager.capturePhoto()
+                        } label: {
+                            Circle()
+                                .strokeBorder(.white, lineWidth: 3)
+                                .frame(width: 70, height: 70)
+                                .overlay {
+                                    Circle()
+                                        .fill(.white)
+                                        .frame(width: 60, height: 60)
+                                }
                         }
                         
                         Spacer()
@@ -113,6 +112,15 @@ struct CameraLivePreview: View {
                     .frame(maxWidth: .infinity)
                 }
             }
+            .onChange(of: cameraManager.capturedImage?.id) { _ in
+                if cameraManager.capturedImage != nil {
+                    nextPage = true
+                }
+            }
+            .navigationDestination(isPresented: $nextPage, destination: {
+                PictureConfirmationView()
+                    .environmentObject(cameraManager)
+            })
             .onAppear() {
                 cameraManager.checkAuthorization()
             }
